@@ -6,6 +6,7 @@
 
 import React from "react";
 import Form from "react-bootstrap/Form";
+import SaveButton from "./SaveButton";
 
 class NewNote extends React.Component{
 	state = {
@@ -25,12 +26,15 @@ class NewNote extends React.Component{
 	// Load component. Uses Bootstrap's Form Component
 	render(){
 		return (
-			<Form>
-				<Form.Group>
-					<Form.Control size="lg" type="text" placeholder="Title" onChange={this.handleTitleChange} />
-					<Form.Control as="textarea" rows="5" onChange={this.handleBodyChange}/>
-				</Form.Group>
-			</Form >
+			<div>
+				<Form>
+					<Form.Group>
+						<Form.Control size="lg" type="text" placeholder="Title" onChange={this.handleTitleChange} />
+						<Form.Control as="textarea" rows="5" onChange={this.handleBodyChange}/>
+					</Form.Group>
+				</Form >
+				<SaveButton state={this.state}/>
+			</div>
 		);
 	}
 }
