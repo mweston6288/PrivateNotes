@@ -1,0 +1,25 @@
+{
+  "name": "PrivateNotes",
+  "version": "1.0.0",
+  "description": "Goal: This will be an app that lets users create, save,and organize notes.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mweston6288/PrivateNotes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mweston6288/PrivateNotes/issues"
+  },
+  "homepage": "https://github.com/mweston6288/PrivateNotes#readme",
+  "dependencies": {
+    "express.js": "^1.0.0"
+  }
+}
