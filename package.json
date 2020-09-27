@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/mweston6288/PrivateNotes#readme",
   "dependencies": {
-    "express.js": "^1.0.0"
+    "express.js": "^1.0.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
   }
 }
