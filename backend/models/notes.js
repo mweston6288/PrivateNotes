@@ -1,7 +1,9 @@
 /*
 	Data model for saved notes. Notes contain an id, Title, Body, and owner
 */
-const Sequelize = require ("sequelize");
+
+// set up Sequelize data
+const {Sequelize, DataTypes} = require ("sequelize");
 const sequelize = new Sequelize("notes", "root", "", {
 	host: "localhost",
 	port: 3306,
@@ -12,6 +14,7 @@ const sequelize = new Sequelize("notes", "root", "", {
 
 const Notes = sequelize.define("Notes",{
 	id: {
+		primaryKey: true,
 		type: DataTypes.NUMBER,
 		autoincrement: true
 	},
@@ -24,6 +27,8 @@ const Notes = sequelize.define("Notes",{
 });
 
 	// TODO: associate notes with owners
+
+	
 Notes.sync();
 
 module.exports = Notes;

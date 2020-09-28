@@ -2,7 +2,7 @@ const express = require("express");
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-const dbNotes = require("./models/notes");
+const dbNotes = require("./backend/routes/notesApi");
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("client/build"));
@@ -11,6 +11,7 @@ app.use(express.static("client/build"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(dbNotes);
 // Start our server so that it can begin listening to client requests.
 
 app.listen(PORT, function () {
