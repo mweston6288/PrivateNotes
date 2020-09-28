@@ -21,7 +21,9 @@
   "homepage": "https://github.com/mweston6288/PrivateNotes#readme",
   "dependencies": {
     "express.js": "^1.0.0",
+    "fs": "0.0.1-security",
     "mysql2": "^2.2.5",
+    "path": "^0.12.7",
     "sequelize": "^6.3.5"
   }
 }
