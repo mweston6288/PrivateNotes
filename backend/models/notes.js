@@ -4,7 +4,7 @@
 
 // set up Sequelize data
 const {Sequelize, DataTypes} = require ("sequelize");
-const sequelize = new Sequelize("notes", "root", "", {
+const sequelize = new Sequelize("notes_DB", "root", "", {
 	host: "localhost",
 	port: 3306,
 	dialect: "mysql"
@@ -15,8 +15,8 @@ const sequelize = new Sequelize("notes", "root", "", {
 const Notes = sequelize.define("Notes",{
 	id: {
 		primaryKey: true,
-		type: DataTypes.NUMBER,
-		autoincrement: true
+		type: DataTypes.INTEGER,
+		autoIncrement: true
 	},
 	Title: DataTypes.TEXT,
 	Body: DataTypes.TEXT,
