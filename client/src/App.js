@@ -2,7 +2,8 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import NewNote from "./components/NewNote";
+import NewNote from "./components/newNotes/NewNote";
+import SavedNotes from "./components/savedNotes/SavedNotes"
 
 function App() {
 	return (
@@ -11,6 +12,7 @@ function App() {
 		<Container>
 			<Row>
 				<Col>
+					<SavedNotes/>
 				</Col>
 				<Col>
 					<NewNote/>
