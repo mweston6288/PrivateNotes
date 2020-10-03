@@ -7,9 +7,6 @@ function SaveButton({state}){
 	function handleClick (event){
 		event.preventDefault();
 		axios.post("/api/new", state);
-		console.log(state.Title);
-		console.log(state.Body);
-		console.log("Button clicked");
 
 	}
 	return(

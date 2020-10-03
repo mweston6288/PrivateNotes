@@ -6,12 +6,18 @@ This is made as a class assignment.
 ## Current Status
 New Note field created
 Save Button created
+Note database created
 
 ## Next steps
-Will need to create a database to store notes
-Once database is created and working, I can begin working on showing saved notes
+Create components to receive and show notes
 
 ## TO-DO
-[] create database
+[x] create database
 [] create main body
 [x] create saved notes page
+
+## Components
+* backend/models: Stores the database models. Uses Sequelize for construction and sanitation
+* backend/routes: Files for API connections. Organized into files of related API calls
+* client/public: React-created frotnend code
+* client/src/components: Contains the React componentsfor the frontend
