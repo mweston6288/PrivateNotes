@@ -17,11 +17,9 @@ class NewNote extends React.Component{
 	// the state
 	handleTitleChange = (event) => {
 		this.setState({ ...this.state, Title: event.target.value });
-		console.log(this.state);
 	}
 	handleBodyChange = (event)=>{
 		this.setState({...this.state,Body:event.target.value});
-		console.log(this.state);
 	}
 	// Load component. Uses Bootstrap's Form Component
 	render(){
