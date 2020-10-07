@@ -6,6 +6,7 @@ module.exports = function (app) {
 			Title: req.body.Title,
 			Body: req.body.Body,
 		}).then(function (results) {
+			res.json(results);
 			res.end();
 		});
 	});

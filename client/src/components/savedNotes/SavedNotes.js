@@ -1,30 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 import Container from "react-bootstrap/Container";
 import Note from "./Note.js"
 import axios from "axios";
+import {useSavedNotesContext} from "../../utils/SavedNotesContext";
+function SavedNotes() {
 
-class SavedNotes extends React.Component {
-	state = {
-		notes:[]
-	}
-	componentDidMount(){
-		axios.get("/api/notes").then(response=>{
-			console.log(response);
-			this.setState({ ...this.state, notes: response.data});
-			console.log(this.state);
+	const [NotesContext, dispatch] = useSavedNotesContext();
+	const [Notes, setNotes] = useState([]);
+	console.log(NotesContext);
+	if (NotesContext.updateNeeded){
+		axios.get("/api/notes").then((response) => {
 
+			setNotes(response.data);
+			dispatch({type:"false"});
 		})
-	}
-	render(){
-		return(
-			<Container>
-				<div>
-					{this.state.notes.map((note)=>(
-						<Note Title={note.Title} Body={note.Body}/>
-					))}
-				</div>
-			</Container>
-		)
-	}
+	};
+	console.log(NotesContext);
+
+	return(
+		<Container>
+			<div>
+				{Notes.map((note) => (
+					<Note Title={note.Title} Body={note.Body} />
+				))}
+			</div>
+		</Container>
+	)
 }
+
 export default SavedNotes;
+
+
