@@ -3,8 +3,7 @@ import axios from "axios";
 
 const SavedNotesContext = createContext();
 const { Provider } = SavedNotesContext;
-// update authentication status, username, and userID
-// TODO: Make a sign out condition that resets everything
+
 const reducer = (state, action) => {
 	console.log(action.type);
 	switch(action.type){
@@ -16,7 +15,7 @@ const reducer = (state, action) => {
 	}
 }
 
-// Stores the currently selected armor for users
+
 const SavedNotesProvider = ({ value = [], ...props }) => {
 	const [state, dispatch] = useReducer(reducer, {
 		updateNeeded: true

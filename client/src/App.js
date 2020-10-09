@@ -14,7 +14,9 @@ function App() {
 			<Container>
 				<Row>
 					<Col>
-						<SavedNotes/>
+						<div style={{overflowY:"scroll", height:"100vh"}}>
+							<SavedNotes/>
+						</div>
 					</Col>
 					<Col>
 						<NewNote/>
