@@ -13,8 +13,10 @@ Create components to receive and show notes
 
 ## TO-DO
 [x] create database
-[] create main body
+[x] create main body
 [x] create saved notes page
+[] Add a user database
+[] Create a user context
 
 ## Components
 * Server.js: Manages communication between front and backend. Connects the API routes with the React build files
