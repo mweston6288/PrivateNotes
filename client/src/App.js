@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import NewNote from "./components/newNotes/NewNote";
 import SavedNotes from "./components/savedNotes/SavedNotes"
 import {SavedNotesProvider} from "./utils/SavedNotesContext";
-import Login from "./components/Login/Login"
+import LoginWindow from "./components/Login/LoginWindow"
 
 function App() {
 	return (
@@ -26,7 +26,7 @@ function App() {
 					</Row>
 				</Container>
 			</SavedNotesProvider >
-			<Login/>
+			<LoginWindow/>
 		</>
 	);
 }

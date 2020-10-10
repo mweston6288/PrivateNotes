@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
-function Login(){
+import Form from "react-bootstrap/Form";
+function LoginWindow(){
 	const [show, setShow] = useState(true);
 
 	const handleClose = () => setShow(false);
@@ -13,10 +13,20 @@ function Login(){
 		// make user database
 		<Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
 			<Modal.Header closeButton>
-				<Modal.Title>Login</Modal.Title>
+				<Modal.Title>You must log in to save or view notes</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				You must log in to save or view notes
+				<Form>
+					<Form.Group controlId="formBasicEmail">
+						<Form.Label>Username</Form.Label>
+						<Form.Control type="text" placeholder="username" />
+					</Form.Group>
+
+					<Form.Group controlId="formBasicPassword">
+						<Form.Label>Password</Form.Label>
+						<Form.Control type="password" placeholder="Password" />
+					</Form.Group>
+				</Form>
 			</Modal.Body>
 			<Modal.Footer>
 				<Button variant="secondary" onClick={handleClose}>
@@ -27,4 +37,4 @@ function Login(){
 		</Modal>
 	);
 }
-export default Login;
+export default LoginWindow;
