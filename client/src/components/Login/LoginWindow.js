@@ -2,9 +2,27 @@ import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 function LoginWindow(){
 	const [show, setShow] = useState(true);
+	const [input, setInput] = useState({
+		username:"",
+		password:"",
+		confirmPassword:""
+	});
+	const [loginPage, setLoginPage] = useState(true);
 
+	const handleUsernameChange = (event)=>{
+		setInput({ ...input, username: event.target.value });
+	}
+	const handlePasswordChange = (event) => {
+		setInput({ ...input, password: event.target.value });
+	}
+	const handleConfirmPasswordChange = (event) => {
+		setInput({ ...input, passwordConfirm: event.target.value });
+	}
 	const handleClose = () => setShow(false);
 
 	return (
@@ -26,13 +44,20 @@ function LoginWindow(){
 						<Form.Label>Password</Form.Label>
 						<Form.Control type="password" placeholder="Password" />
 					</Form.Group>
+					<Form.Group as={Row} controlId="buttons">
+						<Col sm={2}>
+							<Button variant="primary" onClick={handleClose}>
+								Login
+							</Button>	
+						</Col>
+						<Col>
+							<Button variant="link">Continue without logging in</Button>
+						</Col>
+					</Form.Group>
 				</Form>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="secondary" onClick={handleClose}>
-					Login
-				</Button>
-				<Button variant="primary">Continue without logging in</Button>
+				<a>Don't have an account? <a href={'#'}>Sign up</a></a>
 			</Modal.Footer>
 		</Modal>
 	);
