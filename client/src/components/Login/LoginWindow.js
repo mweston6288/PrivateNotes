@@ -13,7 +13,6 @@ function LoginWindow(){
 
 	const handleUsernameChange = (event)=>{
 		setInput({ ...input, username: event.target.value });
-		console.log(input);
 	}
 	const handlePasswordChange = (event) => {
 		setInput({ ...input, password: event.target.value });
@@ -22,9 +21,14 @@ function LoginWindow(){
 		setInput({ ...input, passwordConfirm: event.target.value });
 	}
 	const handleClose = () => setShow(false);
-	const handleSignupPage = () => setLoginPage(false);
-	const handleLoginPage = () => setLoginPage(true);
-
+	const handleSignupPage = () => {
+		setLoginPage(false);
+		setInput({username:"",password:"", confirmPassword:""});
+	}
+	const handleLoginPage = () => {
+		setLoginPage(true);
+		setInput({ username: "", password: "", confirmPassword: "" });
+	}
 	return (
 		// TODO: Create user login context and connect to save button
 		// Add an input field in body
@@ -41,9 +45,9 @@ function LoginWindow(){
 			<Modal.Body>
 				{
 					loginPage ?
-						<LoginForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} />
+						<LoginForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} />
 						:
-						<SignupForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} />
+						<SignupForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} handleConfirmPasswordChange={handleConfirmPasswordChange}/>
 				}
 			</Modal.Body>
 			<Modal.Footer>

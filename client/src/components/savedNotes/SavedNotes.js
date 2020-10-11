@@ -7,7 +7,6 @@ function SavedNotes() {
 
 	const [NotesContext, dispatch] = useSavedNotesContext();
 	const [Notes, setNotes] = useState([]);
-	console.log(NotesContext);
 	if (NotesContext.updateNeeded){
 		axios.get("/api/notes").then((response) => {
 
@@ -15,7 +14,6 @@ function SavedNotes() {
 			dispatch({type:"false"});
 		})
 	};
-	console.log(NotesContext);
 
 	return(
 		<Container>

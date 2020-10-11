@@ -5,7 +5,6 @@ const SavedNotesContext = createContext();
 const { Provider } = SavedNotesContext;
 
 const reducer = (state, action) => {
-	console.log(action.type);
 	switch(action.type){
 		case "true":
 			return ({updateNeeded: true});

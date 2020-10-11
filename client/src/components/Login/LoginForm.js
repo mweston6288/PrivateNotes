@@ -6,14 +6,14 @@ import Col from "react-bootstrap/Col";
 function LoginForm(props){
 	return (
 		<Form>
-			<Form.Group controlId="formBasicEmail">
+			<Form.Group controlId="formUsername">
 				<Form.Label>Username</Form.Label>
 				<Form.Control type="text" placeholder="username" onChange={props.handleUsernameChange}/>
 			</Form.Group>
 
-			<Form.Group controlId="formBasicPassword">
+			<Form.Group controlId="formPassword">
 				<Form.Label>Password</Form.Label>
-				<Form.Control type="password" placeholder="Password" />
+				<Form.Control type="password" placeholder="Password" autocomplete="on" onChange={props.handlePasswordChange}/>
 			</Form.Group>
 			<Form.Group as={Row} controlId="buttons">
 				<Col sm={3}>
