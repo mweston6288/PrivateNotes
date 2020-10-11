@@ -3,29 +3,34 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-function LoginForm(props){
+function SignupForm(props) {
 	return (
 		<Form>
-			<Form.Group controlId="formBasicEmail">
+			<Form.Group>
 				<Form.Label>Username</Form.Label>
-				<Form.Control type="text" placeholder="username" onChange={props.handleUsernameChange}/>
+				<Form.Control type="text" placeholder="username" onChange={props.handleUsernameChange} />
 			</Form.Group>
 
 			<Form.Group controlId="formBasicPassword">
 				<Form.Label>Password</Form.Label>
 				<Form.Control type="password" placeholder="Password" />
 			</Form.Group>
+
+			<Form.Group controlId="formBasicPassword">
+				<Form.Label>Confirm Password</Form.Label>
+				<Form.Control type="password" placeholder="Password" />
+			</Form.Group>
 			<Form.Group as={Row} controlId="buttons">
 				<Col sm={3}>
 					<Button variant="primary" onClick={props.handleClose}>
-						Login
-							</Button>
+						Sign up
+					</Button>
 				</Col>
 				<Col>
-					<Button variant="link">Continue without logging in</Button>
+					<Button variant="link">Continue without making an account</Button>
 				</Col>
 			</Form.Group>
 		</Form>
 	)
 }
-export default LoginForm;
+export default SignupForm;
