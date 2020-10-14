@@ -11,6 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 require("./backend/routes/notesApi")(app);
+require("./backend/routes/userApi")(app);
+
 // Start our server so that it can begin listening to client requests.
 
 app.listen(PORT, function () {

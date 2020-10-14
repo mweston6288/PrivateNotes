@@ -22,12 +22,12 @@ function SignupForm(props) {
 			</Form.Group>
 			<Form.Group as={Row} controlId="buttons">
 				<Col sm={3}>
-					<Button variant="primary" onClick={props.handleClose}>
+					<Button variant="primary" onClick={props.handleSignup}>
 						Sign up
 					</Button>
 				</Col>
 				<Col>
-					<Button variant="link">Continue without making an account</Button>
+					<Button variant="link" onClick={props.handleClose}>Continue without making an account</Button>
 				</Col>
 			</Form.Group>
 		</Form>

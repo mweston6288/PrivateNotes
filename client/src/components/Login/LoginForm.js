@@ -17,12 +17,12 @@ function LoginForm(props){
 			</Form.Group>
 			<Form.Group as={Row} controlId="buttons">
 				<Col sm={3}>
-					<Button variant="primary" onClick={props.handleClose}>
+					<Button variant="primary" onClick={props.handleCose}>
 						Login
 							</Button>
 				</Col>
 				<Col>
-					<Button variant="link">Continue without logging in</Button>
+					<Button variant="link" onClick={props.handleCose}>Continue without logging in</Button>
 				</Col>
 			</Form.Group>
 		</Form>

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import LoginForm from "./LoginForm"
@@ -18,9 +19,13 @@ function LoginWindow(){
 		setInput({ ...input, password: event.target.value });
 	}
 	const handleConfirmPasswordChange = (event) => {
-		setInput({ ...input, passwordConfirm: event.target.value });
+		setInput({ ...input, confirmPassword: event.target.value });
+		console.log(input);
 	}
-	const handleClose = () => setShow(false);
+	const handleClose = () => {
+		setShow(false);
+		setInput({ username: "", password: "", confirmPassword: "" });
+	}
 	const handleSignupPage = () => {
 		setLoginPage(false);
 		setInput({username:"",password:"", confirmPassword:""});
@@ -28,6 +33,17 @@ function LoginWindow(){
 	const handleLoginPage = () => {
 		setLoginPage(true);
 		setInput({ username: "", password: "", confirmPassword: "" });
+	}
+	const handleSignup = () =>{
+		if(input.password !== input.confirmPassword){
+			console.log(input.password)
+			console.log(input.confirmPassword)
+			console.log("Passwords do not match");
+			return;
+		}
+		axios.post("/api/newUser", input).then((response)=>{
+			console.log(response);
+		})
 	}
 	return (
 		// TODO: Create user login context and connect to save button
@@ -47,7 +63,7 @@ function LoginWindow(){
 					loginPage ?
 						<LoginForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} />
 						:
-						<SignupForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} handleConfirmPasswordChange={handleConfirmPasswordChange}/>
+						<SignupForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} handleConfirmPasswordChange={handleConfirmPasswordChange} handleSignup={handleSignup}/>
 				}
 			</Modal.Body>
 			<Modal.Footer>
