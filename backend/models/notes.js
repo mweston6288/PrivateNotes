@@ -4,6 +4,8 @@
 
 // set up Sequelize data
 const {Sequelize, DataTypes} = require ("sequelize");
+const users = require("./users");
+
 const sequelize = new Sequelize("notes_DB", "root", "", {
 	host: "localhost",
 	port: 3306,
@@ -27,6 +29,7 @@ const Notes = sequelize.define("Notes",{
 });
 
 	// TODO: associate notes with owners
+Notes.hasMany(users, { foreignKey: "id" });
 
 	
 Notes.sync();
