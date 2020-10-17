@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/mweston6288/PrivateNotes#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "express.js": "^1.0.0",
     "fs": "0.0.1-security",
     "mysql2": "^2.2.5",

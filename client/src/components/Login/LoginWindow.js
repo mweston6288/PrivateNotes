@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
 function LoginWindow(){
+	const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,32}$/;
 	const [show, setShow] = useState(true);
 	const [input, setInput] = useState({
 		username:"",
@@ -35,6 +36,9 @@ function LoginWindow(){
 		setInput({ username: "", password: "", confirmPassword: "" });
 	}
 	const handleSignup = () =>{
+		if(!input.password.match(regex)){
+			console.log("Failure");
+		}
 		if(input.password !== input.confirmPassword){
 			console.log(input.password)
 			console.log(input.confirmPassword)
