@@ -3,17 +3,7 @@
 */
 
 // set up Sequelize data
-const {Sequelize, DataTypes} = require ("sequelize");
-const users = require("./users");
-
-const sequelize = new Sequelize("notes_DB", "root", "", {
-	host: "localhost",
-	port: 3306,
-	dialect: "mysql"
-});
-
-
-
+module.exports = function (sequelize, DataTypes) {
 const Notes = sequelize.define("Notes",{
 	id: {
 		primaryKey: true,
@@ -27,11 +17,6 @@ const Notes = sequelize.define("Notes",{
 		defaultValue: DataTypes.NOW
 	}
 });
+return Notes;
 
-	// TODO: associate notes with owners
-Notes.hasMany(users, { foreignKey: "id" });
-
-	
-Notes.sync();
-
-module.exports = Notes;
+}

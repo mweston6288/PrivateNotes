@@ -1,5 +1,4 @@
 import React, { useReducer, useContext, createContext } from "react";
-import axios from "axios";
 
 const SavedNotesContext = createContext();
 const { Provider } = SavedNotesContext;

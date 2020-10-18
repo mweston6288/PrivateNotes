@@ -1,12 +1,7 @@
-const { Sequelize, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
-const notes = require("./notes");
 
-const sequelize = new Sequelize("notes_DB", "root", "", {
-	host: "localhost",
-	port: 3306,
-	dialect: "mysql"
-});
+
+module.exports = function (sequelize, DataTypes) {
 
 const Users = sequelize.define("Users",{
 	id: {
@@ -27,8 +22,5 @@ const Users = sequelize.define("Users",{
 		}
 	}
 })
-
-Users.hasMany(notes, {as: "Notes"});
-
-Users.sync();
-module.exports = Users;
+return Users;
+}

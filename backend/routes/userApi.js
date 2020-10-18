@@ -1,10 +1,10 @@
-const Users = require("../models/Users.js");
+const db = require("../models");
 
 module.exports = function (app) {
 	app.post("/api/newUser", function (req, res) {
 		console.log(req.body);
 
-		Users.create({
+		db.Users.create({
 			username: req.body.username,
 			password: req.body.password,
 		}).then(function (results) {
