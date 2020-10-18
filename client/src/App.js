@@ -27,8 +27,8 @@ function App() {
 						</Row>
 					</Container>
 				</SavedNotesProvider >
+				<LoginWindow />
 			</UserProvider>
-			<LoginWindow/>
 		</>
 	);
 }

@@ -3,9 +3,12 @@ import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
+import {useUserContext} from "../../utils/UserContext";
 function LoginWindow(){
 	const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,32}$/;
 	const [show, setShow] = useState(true);
+	
+	const [userContext, setUserContext] = useUserContext();
 	const [input, setInput] = useState({
 		username:"",
 		password:"",
@@ -21,7 +24,6 @@ function LoginWindow(){
 	}
 	const handleConfirmPasswordChange = (event) => {
 		setInput({ ...input, confirmPassword: event.target.value });
-		console.log(input);
 	}
 	const handleClose = () => {
 		setShow(false);
@@ -37,16 +39,21 @@ function LoginWindow(){
 	}
 	const handleSignup = () =>{
 		if(!input.password.match(regex)){
-			console.log("Failure");
+			console.log("Does not match regex");
+			//return;
 		}
 		if(input.password !== input.confirmPassword){
-			console.log(input.password)
-			console.log(input.confirmPassword)
 			console.log("Passwords do not match");
 			return;
 		}
 		axios.post("/api/newUser", input).then((response)=>{
-			console.log(response);
+			if(!response.data.errors){
+				setUserContext({type: "login", data: response.data});
+				setShow(false);
+				setInput({ username: "", password: "", confirmPassword: "" });
+			}else{
+				console.log("Username already taken");
+			}
 		})
 	}
 	return (

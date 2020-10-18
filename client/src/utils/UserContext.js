@@ -4,7 +4,13 @@ const UserContext = createContext();
 const { Provider } = UserContext;
 
 const reducer = (state, action) => {
-	return({...state});
+	switch (action.type){
+		case "login":
+			return ({ LoggedIn: true, Username: action.data.username, UserID: action.data.userID});
+		default:
+			return ({ ...state });
+
+	}
 }
 
 
