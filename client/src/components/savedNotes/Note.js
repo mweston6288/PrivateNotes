@@ -1,3 +1,7 @@
+/**
+ * Individual Note panel. Receives a single note detail from
+ * SavedNotes
+ */
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";

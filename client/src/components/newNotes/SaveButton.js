@@ -1,3 +1,7 @@
+/**
+ * Save button component to NewNote.
+ * On click, POST to the note db and update the SavedNotesContext
+ */
 import React from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";

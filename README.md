@@ -7,16 +7,20 @@ This is made as a class assignment.
 New Note field created
 Save Button created
 Note database created
+User can create an account but cannot currently log into a new one
 
 ## Next steps
-Create components to receive and show notes
+Enable login
+Find notes based on user
 
 ## TO-DO
 [x] create database
 [x] create main body
 [x] create saved notes page
-[] Add a user database
-[] Create a user context
+[x] Add a user database
+[x] Create a user context
+[] Update login context
+[] Update notes GET
 
 ## Components
 * Server.js: Manages communication between front and backend. Connects the API routes with the React build files

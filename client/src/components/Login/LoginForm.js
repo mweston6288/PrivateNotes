@@ -1,4 +1,12 @@
-import React, { useState } from "react";
+/**
+ * Subsection of LoginWindow. Displays a login form that has
+ * a field for username and password.
+ * Receives handleUsernameChange, handlePasswordChange,
+ * handleSignup, and handleClose from LoginWindow
+ * TODO: update submit button to link to a login method
+ */
+
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -17,12 +25,12 @@ function LoginForm(props){
 			</Form.Group>
 			<Form.Group as={Row} controlId="buttons">
 				<Col sm={3}>
-					<Button variant="primary" onClick={props.handleCose}>
+					<Button variant="primary" onClick={props.handleLogin}>
 						Login
 							</Button>
 				</Col>
 				<Col>
-					<Button variant="link" onClick={props.handleCose}>Continue without logging in</Button>
+					<Button variant="link" onClick={props.handleClose}>Continue without logging in</Button>
 				</Col>
 			</Form.Group>
 		</Form>

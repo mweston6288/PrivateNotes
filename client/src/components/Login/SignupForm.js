@@ -1,4 +1,12 @@
-import React, { useState } from "react";
+/**
+ * Subsection of LoginWindow. Displays a signup form that has
+ * a field for username, password, and confirmPassword.
+ * Receives handleUsernameChange, handlePasswordChange, 
+ * handleConfirmPasswordChange, handleSignup, and handleClose from
+ * LoginWindow
+ */
+
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
