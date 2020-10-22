@@ -24,7 +24,6 @@ module.exports = function (app) {
 	// If the user has valid login credentials, send them to the user page.
 	// Otherwise the user will be sent an error
 	app.post("/api/user", passport.authenticate("local"), function (req, res) {
-		console.log(req.user);
 		const response = {userID: req.user.dataValues.id, username: req.user.dataValues.username}
 		res.json(response);
 	});

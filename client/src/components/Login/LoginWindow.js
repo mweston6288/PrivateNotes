@@ -51,17 +51,13 @@ function LoginWindow(){
 	const handleLogin = () =>{
 		if (!input.password.match(regex)) {
 			console.log("Does not match regex");
-			//return;
+			return;
 		}
 		axios.post("/api/user", input).then((response) => {
-			console.log(response);
-			if (!response.data.errors) {
-				setUserContext({ type: "login", data: response.data });
-				setShow(false);
-				setInput({ username: "", password: "", confirmPassword: "" });
-			} else {
-				console.log("Username or password failed");
-			}
+			setUserContext({ type: "login", data: response.data });
+			setShow(false);
+			setInput({ username: "", password: "", confirmPassword: "" });
+			console.log(userContext)
 		}).catch((err) => {
 			console.log(err);
 		})
