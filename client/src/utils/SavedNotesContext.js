@@ -16,7 +16,7 @@ const reducer = (state, action) => {
 
 const SavedNotesProvider = ({ value = [], ...props }) => {
 	const [state, dispatch] = useReducer(reducer, {
-		updateNeeded: true
+		notes:[]
 	});
 	return <Provider value={[state, dispatch]}{...props} />
 }

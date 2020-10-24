@@ -9,6 +9,8 @@ import Modal from "react-bootstrap/Modal";
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
 import {useUserContext} from "../../utils/UserContext";
+import { useSavedNotesContext } from "../../utils/SavedNotesContext";
+
 function LoginWindow(){
 	// password must be 8-32 characters with at least 1
 	// capital and lowercase letter, a number, and special character
@@ -16,6 +18,7 @@ function LoginWindow(){
 	// handles whether the login window should be visibile
 	const [show, setShow] = useState(true);
 	const [userContext, setUserContext] = useUserContext();
+	const [SavedNotes, setSavedNotes] = useSavedNotesContext();
 	// stores the current text in the input fields
 	const [input, setInput] = useState({
 		username:"",
@@ -49,15 +52,16 @@ function LoginWindow(){
 		setInput({ username: "", password: "", confirmPassword: "" });
 	}
 	const handleLogin = () =>{
-		if (!input.password.match(regex)) {
-			console.log("Does not match regex");
-			return;
-		}
 		axios.post("/api/user", input).then((response) => {
 			setUserContext({ type: "login", data: response.data });
 			setShow(false);
 			setInput({ username: "", password: "", confirmPassword: "" });
 			console.log(userContext)
+		}).then(()=>{
+			axios.get("/api/notes", { UserId: userContext.UserId}).then((response)=>{
+				setSavedNotesContext({type: "add", data: response.data})
+			})
+
 		}).catch((err) => {
 			console.log(err);
 		})

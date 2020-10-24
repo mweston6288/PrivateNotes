@@ -9,13 +9,15 @@ import Container from "react-bootstrap/Container";
 import Note from "./Note.js"
 import axios from "axios";
 import {useSavedNotesContext} from "../../utils/SavedNotesContext";
-function SavedNotes() {
+import { useUserContext } from "../../utils/UserContext";
 
+function SavedNotes() {
+	const [user] = useUserContext();
 	const [NotesContext, dispatch] = useSavedNotesContext();
 	const [Notes, setNotes] = useState([]);
 	// Make an API call whenever the database updates
 	if (NotesContext.updateNeeded){
-		axios.get("/api/notes").then((response) => {
+		axios.get("/api/notes", {userId: user.UserID}).then((response) => {
 
 			setNotes(response.data);
 			dispatch({type:"false"});
