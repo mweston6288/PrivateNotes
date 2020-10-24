@@ -7,7 +7,7 @@
 import React,{useState} from "react";
 import Form from "react-bootstrap/Form";
 import SaveButton from "./SaveButton";
-import { useUserContext } from "../../utils/UserContext";
+//import { useUserContext } from "../../utils/UserContext";
 // Need to convert to function structure
 function NewNote(){
 	const [state, setState] =useState({
@@ -18,10 +18,10 @@ function NewNote(){
 	// the state
 	const handleTitleChange = (event) => {
 		setState({ ...state, Title: event.target.value });
-	}
+	};
 	const handleBodyChange = (event)=>{
 		setState({...state,Body:event.target.value});
-	}
+	};
 	// Load component. Uses Bootstrap's Form Component
 
 	return (

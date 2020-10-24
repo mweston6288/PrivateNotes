@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Subsection of LoginWindow. Displays a login form that has
  * a field for username and password.
@@ -27,13 +28,13 @@ function LoginForm(props){
 				<Col sm={3}>
 					<Button variant="primary" onClick={props.handleLogin}>
 						Login
-							</Button>
+					</Button>
 				</Col>
 				<Col>
 					<Button variant="link" onClick={props.handleClose}>Continue without logging in</Button>
 				</Col>
 			</Form.Group>
 		</Form>
-	)
+	);
 }
 export default LoginForm;

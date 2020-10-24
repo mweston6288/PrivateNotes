@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  * Subsection of LoginWindow. Displays a signup form that has
  * a field for username, password, and confirmPassword.
@@ -39,6 +40,6 @@ function SignupForm(props) {
 				</Col>
 			</Form.Group>
 		</Form>
-	)
+	);
 }
 export default SignupForm;
