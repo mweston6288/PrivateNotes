@@ -1,27 +1,29 @@
 import React, { useReducer, useContext, createContext } from "react";
-import axios from "axios";
 
 const SavedNotesContext = createContext();
 const { Provider } = SavedNotesContext;
 
 const reducer = (state, action) => {
-	console.log(action.type);
 	switch(action.type){
-		case "true":
-			return ({updateNeeded: true});
-		default:
-			return ({ updateNeeded: false });
+	case "addNew":
+		state.notes.push(action.newNote);
+		return ({...state});
+	case "add":
+		return({...state, notes: action.data});
+	default:
+		return ({...state});
 
 	}
-}
+};
 
 
+// eslint-disable-next-line no-unused-vars
 const SavedNotesProvider = ({ value = [], ...props }) => {
 	const [state, dispatch] = useReducer(reducer, {
-		updateNeeded: true
+		notes:[]
 	});
-	return <Provider value={[state, dispatch]}{...props} />
-}
+	return <Provider value={[state, dispatch]}{...props} />;
+};
 const useSavedNotesContext = () => {
 	return useContext(SavedNotesContext);
 };

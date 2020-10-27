@@ -1,14 +1,26 @@
+/**
+ * Save button component to NewNote.
+ * On click, POST to the note db and update the SavedNotesContext
+ */
 import React from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import {useSavedNotesContext} from "../../utils/SavedNotesContext";
+import {useUserContext} from "../../utils/UserContext";
+import {useLoginContext} from "../../utils/LoginContext";
 function SaveButton({state}){
 	const [SavedNotes, dispatch] = useSavedNotesContext();
-	function handleClick (event){
-		event.preventDefault();
-		axios.post("/api/new", state).then((response)=>{
-			dispatch({type:"true"});
-		})
+	const [user] = useUserContext();
+	const [Login, setLogin] = useLoginContext();
+	const handleClick = (event) => {
+		if (user.LoggedIn){
+			axios.post("/api/new", {Title: state.Title,Body: state.Body, UserId: user.UserID}).then((response)=>{
+				dispatch({type:"addNew", newNote: response.data});
+			})
+		}
+		else{
+			setLogin({type: "show"});
+		}
 	};
 	return(
 		<Button onClick={handleClick}>Save</Button>

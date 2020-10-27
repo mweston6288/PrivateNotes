@@ -4,36 +4,37 @@
 	state that will be passed along if the user saves the note
 */
 
-import React from "react";
+import React,{useState} from "react";
 import Form from "react-bootstrap/Form";
 import SaveButton from "./SaveButton";
-
-class NewNote extends React.Component{
-	state = {
+//import { useUserContext } from "../../utils/UserContext";
+// Need to convert to function structure
+function NewNote(){
+	const [state, setState] =useState({
 		Title:"",
 		Body:""
-	};
+	});
 	// On changing the value in either text box, these two methods handle updating
 	// the state
-	handleTitleChange = (event) => {
-		this.setState({ ...this.state, Title: event.target.value });
-	}
-	handleBodyChange = (event)=>{
-		this.setState({...this.state,Body:event.target.value});
-	}
+	const handleTitleChange = (event) => {
+		setState({ ...state, Title: event.target.value });
+	};
+	const handleBodyChange = (event)=>{
+		setState({...state,Body:event.target.value});
+	};
 	// Load component. Uses Bootstrap's Form Component
-	render(){
-		return (
-			<div>
-				<Form>
-					<Form.Group>
-						<Form.Control size="lg" type="text" placeholder="Title" onChange={this.handleTitleChange} />
-						<Form.Control as="textarea" rows="5" onChange={this.handleBodyChange}/>
-					</Form.Group>
-				</Form >
-				<SaveButton state={this.state}/>
-			</div>
-		);
-	}
+
+	return (
+		<div>
+			<Form>
+				<Form.Group>
+					<Form.Control size="lg" type="text" placeholder="Title" onChange={handleTitleChange} />
+					<Form.Control as="textarea" rows="5" onChange={handleBodyChange}/>
+				</Form.Group>
+			</Form >
+			<SaveButton state={state}/>
+		</div>
+	);
+	
 }
 export default NewNote;

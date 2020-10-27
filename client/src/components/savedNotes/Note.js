@@ -1,3 +1,8 @@
+/* eslint-disable react/prop-types */
+/**
+ * Individual Note panel. Receives a single note detail from
+ * SavedNotes
+ */
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
@@ -14,7 +19,7 @@ class Note extends React.Component {
 					</Card.Body>
 				</Card>
 			</Container>
-		)
+		);
 	}
 }
 export default Note;

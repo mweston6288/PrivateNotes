@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "install-cli": "cd client && npm install",
+    "install-all": "npm install && npm run install-cli && npm run install-force",
+    "install-force": "cd client && npm audit fix --force",
+    "setup": "npm run install-all && npm run build"
   },
   "repository": {
     "type": "git",
@@ -20,10 +24,17 @@
   },
   "homepage": "https://github.com/mweston6288/PrivateNotes#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
+    "compression": "^1.7.4",
+    "express-session": "^1.17.1",
     "express.js": "^1.0.0",
     "fs": "0.0.1-security",
     "mysql2": "^2.2.5",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0",
+    "sqlite3": "^5.0.0"
   }
 }
