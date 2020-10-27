@@ -30,6 +30,7 @@ module.exports = function (sequelize, DataTypes) {
 	})
 	Users.associate = function (models) {
 		Users.hasMany(models.Notes);
+		Users.hasMany(models.Category);
 	};
 	// Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
 	Users.prototype.validPassword = function (password) {
