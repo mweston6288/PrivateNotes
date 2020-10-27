@@ -5,7 +5,6 @@ const db = require("../models");
 
 module.exports = function (app) {
 	// Post a new note
-	// TODO: associate created note with a user
 	app.post("/api/new", function (req, res) {
 		db.Notes.create({
 			Title: req.body.Title,

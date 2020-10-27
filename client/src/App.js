@@ -18,12 +18,12 @@ function App() {
 					<SavedNotesProvider>
 						<Container>
 							<Row>
-								<Col>
+								<Col sm={6}>
 									<div style={{overflowY:"scroll", height:"100vh"}}>
 										<SavedNotes/>
 									</div>
 								</Col>
-								<Col>
+								<Col sm={6}>
 									<NewNote/>
 								</Col>
 							</Row>

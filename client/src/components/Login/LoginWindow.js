@@ -67,9 +67,9 @@ function LoginWindow(){
 	// making a POST request for a new user
 	const handleSignup = () =>{
 		// check that password has all requirements
-		if(login.password.match(regex)){
+		if(!login.password.match(regex)){
 			console.log("Does not match regex");
-			//return;
+			return;
 		}
 		// check that password and confirmPassword match
 		if(login.password !== login.confirmPassword){
@@ -92,10 +92,7 @@ function LoginWindow(){
 		});
 	};
 	return (
-		// TODO: Create user login context and connect to save button
-		// Add an input field in body
-		// make user database
-		// If loginPage is true, create the lgoinForm compoenent
+		// If loginPage is true, create the lgoinForm component
 		// and pass the login methods to it
 		// Otherwise, create the SignupForm and pass the signup
 		// methods to it 

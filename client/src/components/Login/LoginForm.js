@@ -4,7 +4,6 @@
  * a field for username and password.
  * Receives handleUsernameChange, handlePasswordChange,
  * handleSignup, and handleClose from LoginWindow
- * TODO: update submit button to link to a login method
  */
 
 import React from "react";
