@@ -1,5 +1,5 @@
 import React, { useReducer, useContext, createContext } from "react";
-
+import Sort from "fast-sort"
 const SavedNotesContext = createContext();
 const { Provider } = SavedNotesContext;
 
@@ -10,6 +10,13 @@ const reducer = (state, action) => {
 		return ({...state});
 	case "add":
 		return({...state, notes: action.data});
+	case "sort":
+		if (action.sortBy === "reverseUpdatedAt"){
+			Sort(state.notes).desc("updatedAt");
+
+		}else
+			Sort(state.notes).asc(action.sortBy);
+		return({...state});
 	default:
 		return ({...state});
 
