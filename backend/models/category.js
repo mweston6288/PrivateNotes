@@ -16,8 +16,7 @@ module.exports = function (sequelize, DataTypes) {
 		}),
 		Category.belongsToMany(models.Notes,{
 			through: models.Notes_Category,
-			foreignKey: "categoryId",
-			as:"categoryForNotes"
+			foreignKey: "categoryId"
 		})
 
 	};

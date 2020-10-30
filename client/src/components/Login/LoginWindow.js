@@ -51,6 +51,7 @@ function LoginWindow(){
 			setUserContext({ type: "login", data: response.data });
 			setLogin({ type: "close" });
 			axios.get("api/notes/"+response.data.userID).then((response)=>{
+				console.log(response.data);
 				setSavedNotes({type:"add", data: response.data})
 			})
 		}).catch((err) => {

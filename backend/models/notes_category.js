@@ -25,12 +25,10 @@ module.exports = function (sequelize, DataTypes) {
 		Notes_Category.belongsTo(models.Notes, {
 			foreignKey: "notesId",
 			targetKey: "id",
-			as: "Notes"
 		}),
 		Notes_Category.belongsTo(models.Category, {
 			foreignKey: "categoryId",
 			targetKey: "id",
-			as: "Category"
 		})
 
 	};

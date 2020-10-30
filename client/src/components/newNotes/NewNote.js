@@ -28,7 +28,7 @@ function NewNote(){
 		<div>
 			<Form>
 				<Form.Group>
-					<Form.Control size="lg" type="text" placeholder="Title" onChange={handleTitleChange} />
+					<Form.Control size="lg" type="text" placeholder="Title" maxLength= "20" onChange={handleTitleChange} />
 					<Form.Control as="textarea" rows="5" onChange={handleBodyChange}/>
 				</Form.Group>
 			</Form >
