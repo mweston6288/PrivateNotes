@@ -7,7 +7,7 @@ import axios from "axios";
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 function Categories(){
-	const[user] = useUserContext();
+	const[user,setUser] = useUserContext();
 	const [notes, setNotes] = useUserContext();
 	const [newCategory, setNewCategory] = useState("");
 	const handleAllCategory = ()=>{
@@ -22,6 +22,7 @@ function Categories(){
 		axios.post("/api/newCategory", {Title: newCategory, UserId: user.UserID})
 			.then((response)=>{
 				console.log(response);
+				setUser({type:"categoryAdd", data: response.data})
 			})
 	}
 	return(

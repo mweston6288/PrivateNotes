@@ -8,9 +8,11 @@ const reducer = (state, action) => {
 	case "login":
 		return ({...state, LoggedIn: true, Username: action.data.username, UserID: action.data.userID});
 	case "categories":{
-		console.log(action.data)
 		return ({ ...state, categories: action.data});
-
+	}
+	case "categoryAdd":{
+		state.categories.push(action.data)
+		return ({ ...state});
 	}
 	default:
 		return ({ ...state });
