@@ -6,20 +6,27 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-class Note extends React.Component {
-	
-	
-	render(){
-		return(
-			<Container>
-				<Card>
-					<Card.Body>
-						<Card.Title>{this.props.Title}</Card.Title>
-						<Card.Text>{this.props.Body}</Card.Text>
-					</Card.Body>
-				</Card>
-			</Container>
-		);
-	}
+import { useSavedNotesContext } from "../../utils/SavedNotesContext";
+
+function Note({note}){	
+	const [{ category },] = useSavedNotesContext();
+
+	return(
+		<div>
+			{category === "all" || note.Categories.includes(category) ?
+				<Container>
+					<Card>
+						<Card.Body>
+							<Card.Title>{note.Title}</Card.Title>
+							<Card.Text>{note.Body}</Card.Text>
+						</Card.Body>
+					</Card>
+				</Container>
+			:
+				<></>
+			}
+		</div>
+	)
+
 }
 export default Note;

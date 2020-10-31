@@ -27,7 +27,8 @@ const reducer = (state, action) => {
 // eslint-disable-next-line no-unused-vars
 const SavedNotesProvider = ({ value = [], ...props }) => {
 	const [state, dispatch] = useReducer(reducer, {
-		notes:[]
+		notes:[],
+		category: "all"
 	});
 	return <Provider value={[state, dispatch]}{...props} />;
 };
