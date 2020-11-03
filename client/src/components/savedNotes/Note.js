@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /**
  * Individual Note panel. Receives a single note detail from
  * SavedNotes
@@ -12,9 +11,17 @@ import CategoryButton from "./CategoryButton"
 function Note({note}){	
 	const [{ category },] = useSavedNotesContext();
 	const [open, setOpen] = useState(false)
+
+	const categories = [];
+	note.Categories.forEach((element)=>{
+		categories.push(element.Title);
+	})
+	console.log(categories)
 	return(
 		<div>
-			{category === "all" || note.Categories.includes(category) ?
+			{ // if user category is set to "all", display all notes. Otherwise, display only
+			// notes that have a matching category value
+			category === "all" || categories.includes(category) ?
 				<Container>
 					<Card>
 						<Card.Body onMouseEnter={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>

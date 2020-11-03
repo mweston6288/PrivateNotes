@@ -1,3 +1,8 @@
+/**
+ * Link table model for categories and notes. Each entry links a note to a category
+ * The notesId and categoryId are the id element in Notes and Category
+ */
+
 module.exports = function (sequelize, DataTypes) {
 	const Notes_Category = sequelize.define("Notes_Category", {
 		id: {

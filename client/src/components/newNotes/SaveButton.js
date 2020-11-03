@@ -13,11 +13,13 @@ function SaveButton({state}){
 	const [user] = useUserContext();
 	const [Login, setLogin] = useLoginContext();
 	const handleClick = (event) => {
+		// if user is logged in, add the new note to the database and then add the note
+		// to the user context
 		if (user.LoggedIn){
 			axios.post("/api/new", {Title: state.Title,Body: state.Body, UserId: user.UserID}).then((response)=>{
 				dispatch({type:"addNew", newNote: response.data});
 			})
-		}
+		} // If user is not logged in, display the login window instead
 		else{
 			setLogin({type: "show"});
 		}

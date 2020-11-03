@@ -1,3 +1,9 @@
+/**
+ * Database model for note categories. Each category belongs to a user 
+ * and each category can be associated with 0 or more notes
+ *  
+ */
+
 module.exports = function (sequelize, DataTypes) {
 	const Category = sequelize.define("Category", {
 		id: {

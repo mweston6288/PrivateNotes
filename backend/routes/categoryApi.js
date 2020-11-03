@@ -14,6 +14,7 @@ module.exports = function (app) {
 			res.end();
 		});
 	});
+	// Get categories owned by a user
 	app.get("/api/categories/:Userid", function (req, res) {
 		db.Category.findAll({
 			where: {

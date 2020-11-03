@@ -17,6 +17,12 @@ const reducer = (state, action) => {
 		}else
 			Sort(state.notes).asc(action.sortBy);
 		return({...state});
+	case "all":
+		return ({ ...state, category: "all" });
+
+	case "category":
+		return ({ ...state, category: action.data });
+
 	default:
 		return ({...state});
 

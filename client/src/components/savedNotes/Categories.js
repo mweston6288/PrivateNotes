@@ -1,6 +1,11 @@
+/**
+ * Display the user's created categories and an input field to make a new one
+ * Categories are structured in rows
+ */
 import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
 import {useUserContext} from "../../utils/UserContext"
+import {useSavedNotesContext} from "../../utils/SavedNotesContext"
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup"
 import axios from "axios";
@@ -8,20 +13,26 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 function Categories(){
 	const[user,setUser] = useUserContext();
-	const [notes, setNotes] = useUserContext();
+	const [notes, setNotes] = useSavedNotesContext();
 	const [newCategory, setNewCategory] = useState("");
+	
+	// set Notes active category to All
 	const handleAllCategory = ()=>{
 		setNotes({type: "all"})
 	}
-
+	const handleCategory = (event)=>{
+		console.log(event.target.value)
+		setNotes({ type: "category", data: event.target.value })
+		console.log(notes)
+	}
+	// Store the current value of the input for new categories
 	const handleInputChange = (e)=>{
 		setNewCategory(e.target.value);
-		console.log(newCategory)
 	}
+	// Add a new category to the db and to the user's list of categories
 	const handleAdd = ()=>{
 		axios.post("/api/newCategory", {Title: newCategory, UserId: user.UserID})
 			.then((response)=>{
-				console.log(response);
 				setUser({type:"categoryAdd", data: response.data})
 			})
 	}
@@ -43,7 +54,7 @@ function Categories(){
 				</Row>
 				{user.categories.map((category) => (
 					<Row>
-						<Button>{category.Title}</Button>
+						<Button value={category.Title} onClick={handleCategory}>{category.Title}</Button>
 					</Row>
 				))}
 			</Container>

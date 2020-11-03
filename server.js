@@ -23,6 +23,7 @@ app.use(compression());
 require("./backend/routes/notesApi")(app);
 require("./backend/routes/userApi")(app);
 require("./backend/routes/categoryApi")(app);
+require("./backend/routes/notes_categoryApi")(app);
 
 // Start our server so that it can begin listening to client requests.
 

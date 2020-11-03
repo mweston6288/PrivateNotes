@@ -1,3 +1,8 @@
+/**
+ * Drop-down button that lets user sort by date or title
+ *  Does not filter out any notes
+ */
+
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton"
@@ -8,7 +13,6 @@ function SortButton() {
 
 
 	const handleSortClick = (event) => {
-		console.log(event);
 		setNotes({ type: "sort", sortBy: event })
 
 	}

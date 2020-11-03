@@ -23,7 +23,8 @@ module.exports = function (app) {
 				UserId: req.params.id
 			},
 			include: {
-				model: db.Category
+				model: db.Category,
+				attributes: ["Title"]
 			}
 		}).then(function (results) {
 			res.json(results);
