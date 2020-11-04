@@ -26,8 +26,8 @@ function SavedNotes() {
 					<SortButton />
 					<div>
 						{/* For every note in Notes, create a Note object */}
-						{notes.map((note) => (
-							<Note key={note.id} note={note} />
+						{notes.map((note, index) => (
+							<Note key={note.id} note={note} index={index} />
 						))}
 					</div>
 				</Col>

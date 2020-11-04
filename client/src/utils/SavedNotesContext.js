@@ -6,6 +6,7 @@ const { Provider } = SavedNotesContext;
 const reducer = (state, action) => {
 	switch(action.type){
 	case "addNew":
+		action.newNote.Categories = [];
 		state.notes.push(action.newNote);
 		return ({...state});
 	case "add":
@@ -22,7 +23,9 @@ const reducer = (state, action) => {
 
 	case "category":
 		return ({ ...state, category: action.data });
-
+	case "updateCategory":
+		state.notes[action.index].Categories.push(action.category)
+		return ({...state})
 	default:
 		return ({...state});
 

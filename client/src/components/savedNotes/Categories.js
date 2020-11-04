@@ -21,9 +21,7 @@ function Categories(){
 		setNotes({type: "all"})
 	}
 	const handleCategory = (event)=>{
-		console.log(event.target.value)
 		setNotes({ type: "category", data: event.target.value })
-		console.log(notes)
 	}
 	// Store the current value of the input for new categories
 	const handleInputChange = (e)=>{
