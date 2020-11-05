@@ -16,7 +16,14 @@ function Note({note,index}){
 	note.Categories.forEach((element)=>{
 		categories.push(element.Title);
 	})
+	// The stylesheet for the note text body so long notes don't take large amounts of screen space
+	const textEllipses = {
+		whiteSpace: "nowrap",
+		overflow: "hidden",
+		textOverflow: "ellipsis"
+	}
 	return(
+
 		<div>
 			{ // if user category is set to "all", display all notes. Otherwise, display only
 			// notes that have a matching category value
@@ -25,7 +32,7 @@ function Note({note,index}){
 					<Card>
 						<Card.Body onMouseEnter={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>
 							<Card.Title>{note.Title}</Card.Title>
-							<Card.Text>{note.Body}</Card.Text>
+							<Card.Text style={textEllipses}>{note.Body}</Card.Text>
 							<Fade in={open}><div><CategoryButton noteId={note.id} index={index}/></div></Fade>
 						</Card.Body>
 					</Card>
