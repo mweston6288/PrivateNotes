@@ -4,26 +4,24 @@ Goal: This will be an app that lets users create, save,and organize notes.
 This is made as a class assignment.
 
 ## Current Status
-New Note field created
-Save Button created
-Note database created
-User can create an account and log into it
-Notes are saved and associated with User
+User can make and save notes
+User can create an account and log in
+User can create categories
+User can sort notes
+User can set notes into categories
 
 
 ## Next steps
-Implement add categories
-Implement add to category
-Add category column to saved notes.
+Create logout option
+Create delete note option
+Create delete cateogry option
+Create note edit
 
 ## TO-DO
-[x] create database
-[x] create main body
-[x] create saved notes page
-[x] Add a user database
-[x] Create a user context
-[] Update login context
-[] Update notes GET
+[] create note edit
+[] create logout
+[] create delete note
+[] create delete category
 
 ## Components
 * Server.js: Manages communication between front and backend. Connects the API routes with the React build files
