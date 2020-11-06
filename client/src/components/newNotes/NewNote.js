@@ -4,23 +4,22 @@
 	state that will be passed along if the user saves the note
 */
 
-import React,{useState} from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import SaveButton from "./SaveButton";
+import {useNewNoteContext} from "../../utils/NewNoteContext";
 //import { useUserContext } from "../../utils/UserContext";
 // Need to convert to function structure
 function NewNote(){
-	const [state, setState] =useState({
-		Title:"",
-		Body:""
-	});
+	const [state, setState] =useNewNoteContext();
 	// On changing the value in either text box, these two methods handle updating
 	// the state
 	const handleTitleChange = (event) => {
-		setState({ ...state, Title: event.target.value });
+		setState({ type: "title", data: event.target.value});
 	};
 	const handleBodyChange = (event)=>{
-		setState({...state,Body:event.target.value});
+		setState({type: "body",data:event.target.value});
+		console.log(state);
 	};
 	// Load component. Uses Bootstrap's Form Component
 
