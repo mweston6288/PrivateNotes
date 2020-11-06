@@ -48,11 +48,11 @@ function Categories(){
 			</InputGroup>
 			<Container>
 				<Row>
-					<Button onClick={handleAllCategory}>All</Button>
+					<Button variant="link" block onClick={handleAllCategory}>All</Button>
 				</Row>
 				{user.categories.map((category) => (
 					<Row>
-						<Button value={category.Title} onClick={handleCategory}>{category.Title}</Button>
+						<Button variant="link" block value={category.Title} onClick={handleCategory}>{category.Title}</Button>
 					</Row>
 				))}
 			</Container>

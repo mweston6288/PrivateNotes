@@ -22,12 +22,12 @@ function App() {
 								<Col sm={3}>
 									<Categories/>
 								</Col>
-								<Col sm={3}>
+								<Col sm={4}>
 									<div style={{overflowY:"scroll", height:"100vh"}}>
 										<SavedNotes/>
 									</div>
 								</Col>
-								<Col sm={6}>
+								<Col sm={5}>
 									<NewNote/>
 								</Col>
 							</Row>
