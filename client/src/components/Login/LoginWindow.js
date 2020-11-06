@@ -47,12 +47,22 @@ function LoginWindow(){
 		setLogin({ type: "reset" });
 	};
 	const handleLogin = () =>{
+		// Request user information. Will proceed to .then() only if passport returns
+		// a successful value
 		axios.post("/api/user", login).then((response) => {
+			// Update user Context
 			setUserContext({ type: "login", data: response.data });
 			setLogin({ type: "close" });
+			// Get user notes
 			axios.get("api/notes/"+response.data.userID).then((response)=>{
 				setSavedNotes({type:"add", data: response.data})
 			})
+			// get user note categories 
+			axios.get("api/categories/"+response.data.userID).then((response)=>{
+				setUserContext({ type: "categories", data: response.data });
+			})
+			// If passport fails, return an error
+			// TODO: create an alert for failed login
 		}).catch((err) => {
 			console.log(err);
 		});
@@ -80,6 +90,8 @@ function LoginWindow(){
 		// If response does not contain an error,
 		// update userContext
 		// else return an error
+		// Signup does not make calls to get notes or categories 
+		// because reasonably, new users do not have any
 		axios.post("/api/newUser", login).then((response)=>{
 			if(!response.data.errors){
 				setUserContext({type: "login", data: response.data});
@@ -92,7 +104,7 @@ function LoginWindow(){
 		});
 	};
 	return (
-		// If loginPage is true, create the lgoinForm component
+		// If loginPage is true, create the loginForm component
 		// and pass the login methods to it
 		// Otherwise, create the SignupForm and pass the signup
 		// methods to it 

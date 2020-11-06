@@ -6,7 +6,14 @@ const { Provider } = UserContext;
 const reducer = (state, action) => {
 	switch (action.type){
 	case "login":
-		return ({ LoggedIn: true, Username: action.data.username, UserID: action.data.userID});
+		return ({...state, LoggedIn: true, Username: action.data.username, UserID: action.data.userID});
+	case "categories":{
+		return ({ ...state, categories: action.data});
+	}
+	case "categoryAdd":{
+		state.categories.push(action.data)
+		return ({ ...state});
+	}
 	default:
 		return ({ ...state });
 
@@ -19,7 +26,8 @@ const UserProvider = ({ value = [], ...props }) => {
 	const [state, dispatch] = useReducer(reducer, {
 		LoggedIn: false,
 		Username:"",
-		UserID:""
+		UserID:"",
+		categories:[]
 	});
 	return <Provider value={[state, dispatch]}{...props} />;
 };

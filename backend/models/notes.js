@@ -23,7 +23,11 @@ module.exports = function (sequelize, DataTypes) {
 			foreignKey: {
 				allowNull: false
 			}
-		});
+		}),
+		Notes.belongsToMany(models.Category,{
+			through: models.Notes_Category,
+			foreignKey: "notesId"
+		})
 	};
 	return Notes;
 

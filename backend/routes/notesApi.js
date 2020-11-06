@@ -21,6 +21,10 @@ module.exports = function (app) {
 		db.Notes.findAll({
 			where: {
 				UserId: req.params.id
+			},
+			include: {
+				model: db.Category,
+				attributes: ["Title"]
 			}
 		}).then(function (results) {
 			res.json(results);

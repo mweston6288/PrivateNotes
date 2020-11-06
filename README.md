@@ -7,11 +7,14 @@ This is made as a class assignment.
 New Note field created
 Save Button created
 Note database created
-User can create an account but cannot currently log into a new one
+User can create an account and log into it
+Notes are saved and associated with User
+
 
 ## Next steps
-Enable login
-Find notes based on user
+Implement add categories
+Implement add to category
+Add category column to saved notes.
 
 ## TO-DO
 [x] create database
