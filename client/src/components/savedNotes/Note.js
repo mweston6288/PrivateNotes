@@ -8,7 +8,7 @@ import Card from "react-bootstrap/Card";
 import { useSavedNotesContext } from "../../utils/SavedNotesContext";
 import Fade from "react-bootstrap/Fade"
 import CategoryButton from "./CategoryButton"
-function Note({note,index}){
+function Note({note,index, handleClick}){
 	const [{ category },] = useSavedNotesContext();
 	const [open, setOpen] = useState(false)
 
@@ -22,6 +22,7 @@ function Note({note,index}){
 		overflow: "hidden",
 		textOverflow: "ellipsis"
 	}
+
 	return(
 
 		<div>
@@ -29,6 +30,7 @@ function Note({note,index}){
 			// notes that have a matching category value
 			category === "all" || categories.includes(category) ?
 				<Container>
+					<div onDoubleClick={()=>handleClick(index)}>
 					<Card>
 						<Card.Body onMouseEnter={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>
 							<Card.Title>{note.Title}</Card.Title>
@@ -36,6 +38,7 @@ function Note({note,index}){
 							<Fade in={open}><div><CategoryButton noteId={note.id} index={index}/></div></Fade>
 						</Card.Body>
 					</Card>
+						</div>
 				</Container>
 			:
 				<></>

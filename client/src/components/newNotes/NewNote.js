@@ -27,11 +27,11 @@ function NewNote(){
 		<div>
 			<Form>
 				<Form.Group>
-					<Form.Control size="lg" type="text" placeholder="Title" maxLength= "20" onChange={handleTitleChange} />
-					<Form.Control as="textarea" rows="5" onChange={handleBodyChange}/>
+					<Form.Control size="lg" type="text" placeholder="Title" maxLength= "20" onChange={handleTitleChange} defaultValue={state.Title}/>
+					<Form.Control as="textarea" rows="5" onChange={handleBodyChange} defaultValue={state.Body}/>
 				</Form.Group>
 			</Form >
-			<SaveButton state={state}/>
+			<SaveButton/>
 		</div>
 	);
 	

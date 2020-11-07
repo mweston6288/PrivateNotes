@@ -30,4 +30,15 @@ module.exports = function (app) {
 			res.json(results);
 		});
 	});
-}
+	app.put("/api/notes", function (req, res) {
+		db.Notes.update(
+			req.body,
+			{
+				where: {
+					id: req.body.notesId
+				}
+			}).then(function (response) {
+				res.json(response);
+			});
+	});
+};

@@ -10,7 +10,8 @@ const reducer = (state, action) => {
 
 		case "body":
 			return ({ ...state, Body: action.data});
-
+		case "update":
+			return ({ ...state, Title: action.data.Title, Body: action.data.Body, noteId: action.data.id})
 		default:
 			return ({ ...state });
 
