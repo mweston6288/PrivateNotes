@@ -13,20 +13,24 @@ function SaveButton(){
 	const [SavedNotes, dispatch] = useSavedNotesContext();
 	const [user] = useUserContext();
 	const [Login, setLogin] = useLoginContext();
-	const [NewNote] = useNewNoteContext();
+	const [NewNote,setNewNote] = useNewNoteContext();
 	const handleClick = (event) => {
 		// if user is logged in, add the new note to the database and then add the note
 		// to the user context
 		if (user.LoggedIn){
 			if(NewNote.noteId){
 				axios.put("api/notes",NewNote).then((response)=>{
+					setNewNote({ type: "reset" })
+
 					console.log(response);
 				})
 				//TODO: implement note update
 				console.log("Note is updated")
-			}
-			axios.post("/api/new", NewNote).then((response)=>{
-				dispatch({type:"addNew", newNote: response.data});
+			} else
+				axios.post("/api/new", NewNote).then((response)=>{
+					dispatch({type:"addNew", newNote: response.data});
+					setNewNote({ type: "reset" })
+
 			})
 		} // If user is not logged in, display the login window instead
 		else{

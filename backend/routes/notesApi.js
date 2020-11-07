@@ -35,7 +35,7 @@ module.exports = function (app) {
 			req.body,
 			{
 				where: {
-					id: req.body.notesId
+					id: req.body.noteId
 				}
 			}).then(function (response) {
 				res.json(response);

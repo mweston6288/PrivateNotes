@@ -12,6 +12,8 @@ const reducer = (state, action) => {
 			return ({ ...state, Body: action.data});
 		case "update":
 			return ({ ...state, Title: action.data.Title, Body: action.data.Body, noteId: action.data.id})
+		case "reset":
+			return({...state, Title:"", Body:"", noteId:""})
 		default:
 			return ({ ...state });
 
