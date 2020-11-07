@@ -14,7 +14,7 @@ function SavedNotes() {
 	const [{notes},] = useSavedNotesContext();
 	const [newNote, setNewNote] = useNewNoteContext();
 	const handleClick = (index)=>{
-		setNewNote({type:"update", data: notes[index]})
+		setNewNote({type:"update", data: notes[index], index:index})
 		console.log(newNote);
 	}
 	return(

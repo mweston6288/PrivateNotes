@@ -13,9 +13,11 @@ function Note({note,index, handleClick}){
 	const [open, setOpen] = useState(false)
 
 	const categories = [];
-	note.Categories.forEach((element)=>{
-		categories.push(element.Title);
-	})
+	if(note.Categories){
+		note.Categories.forEach((element)=>{
+			categories.push(element.Title);
+		})
+	}
 	// The stylesheet for the note text body so long notes don't take large amounts of screen space
 	const textEllipses = {
 		whiteSpace: "nowrap",

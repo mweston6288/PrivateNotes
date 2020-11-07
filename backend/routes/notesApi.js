@@ -31,14 +31,19 @@ module.exports = function (app) {
 		});
 	});
 	app.put("/api/notes", function (req, res) {
-		db.Notes.update(
-			req.body,
-			{
+		console.log(req.body)
+		db.Notes.update({
+			Title: req.body.Title,
+			Body: req.body.Body
+			},{
 				where: {
 					id: req.body.noteId
 				}
-			}).then(function (response) {
-				res.json(response);
+			}).then(function () {
+				db.Notes.findOne({where: {id:req.body.noteId}}).then((response)=>{
+					console.log(response)
+					res.json(response);
+				})
 			});
 	});
 };

@@ -14,7 +14,6 @@ const reducer = (state, action) => {
 	case "sort":
 		if (action.sortBy === "reverseUpdatedAt"){
 			Sort(state.notes).desc("updatedAt");
-
 		}else
 			Sort(state.notes).asc(action.sortBy);
 		return({...state});
@@ -26,6 +25,17 @@ const reducer = (state, action) => {
 	case "updateCategory":
 		state.notes[action.index].Categories.push(action.category)
 		return ({...state})
+	case "updateNote":{
+		console.log(state.notes)
+		console.log(action)
+		action.data.Categories = [];
+
+		state.notes.splice(action.index,1)
+		state.notes.push(action.data)
+			console.log(state)
+
+		return ({ ...state })
+	}
 	default:
 		return ({...state});
 

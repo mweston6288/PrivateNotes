@@ -11,9 +11,9 @@ const reducer = (state, action) => {
 		case "body":
 			return ({ ...state, Body: action.data});
 		case "update":
-			return ({ ...state, Title: action.data.Title, Body: action.data.Body, noteId: action.data.id})
+			return ({ ...state, Title: action.data.Title, Body: action.data.Body, noteId: action.data.id, activeIndex:action.index})
 		case "reset":
-			return({...state, Title:"", Body:"", noteId:""})
+			return({...state, Title:"", Body:"", noteId:"", activeIndex:""})
 		default:
 			return ({ ...state });
 
@@ -26,7 +26,8 @@ const NewNoteProvider = ({ value = [], ...props }) => {
 	const [state, dispatch] = useReducer(reducer, {
 		Title:"",
 		Body:"",
-		noteId:""
+		noteId:"",
+		activeIndex:""
 	});
 	return <Provider value={[state, dispatch]}{...props} />;
 };

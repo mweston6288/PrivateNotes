@@ -20,8 +20,9 @@ function SaveButton(){
 		if (user.LoggedIn){
 			if(NewNote.noteId){
 				axios.put("api/notes",NewNote).then((response)=>{
+					console.log(response)
 					setNewNote({ type: "reset" })
-
+					dispatch({type:"updateNote", data: response.data, index: NewNote.activeIndex})
 					console.log(response);
 				})
 				//TODO: implement note update
