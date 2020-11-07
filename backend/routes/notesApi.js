@@ -25,13 +25,15 @@ module.exports = function (app) {
 			include: {
 				model: db.Category,
 				attributes: ["Title"]
-			}
+			},
+			order:[
+				["updatedAt", "DESC"]
+			]
 		}).then(function (results) {
 			res.json(results);
 		});
 	});
 	app.put("/api/notes", function (req, res) {
-		console.log(req.body)
 		db.Notes.update({
 			Title: req.body.Title,
 			Body: req.body.Body
@@ -41,7 +43,6 @@ module.exports = function (app) {
 				}
 			}).then(function () {
 				db.Notes.findOne({where: {id:req.body.noteId}}).then((response)=>{
-					console.log(response)
 					res.json(response);
 				})
 			});

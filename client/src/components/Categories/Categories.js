@@ -36,6 +36,9 @@ function Categories(){
 	}
 	return(
 		<>
+		{
+			user.LoggedIn ?
+			<>
 			<h2>Categories</h2>
 			<InputGroup className="mb-3">
 				<FormControl
@@ -56,8 +59,10 @@ function Categories(){
 					</Row>
 				))}
 			</Container>
-
-
+			</>
+			:
+			<></>
+				}
 		</>
 	)
 }

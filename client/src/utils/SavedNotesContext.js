@@ -7,7 +7,7 @@ const reducer = (state, action) => {
 	switch(action.type){
 	case "addNew":
 		action.newNote.Categories = [];
-		state.notes.push(action.newNote);
+		state.notes.unshift(action.newNote);
 		return ({...state});
 	case "add":
 		return({...state, notes: action.data});
@@ -26,14 +26,10 @@ const reducer = (state, action) => {
 		state.notes[action.index].Categories.push(action.category)
 		return ({...state})
 	case "updateNote":{
-		console.log(state.notes)
-		console.log(action)
 		action.data.Categories = [];
 
 		state.notes.splice(action.index,1)
-		state.notes.push(action.data)
-			console.log(state)
-
+		state.notes.unshift(action.data)
 		return ({ ...state })
 	}
 	default:

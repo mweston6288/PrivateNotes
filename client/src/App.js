@@ -35,7 +35,6 @@ function App() {
 								</Row>
 							</Container>
 							<LoginWindow />
-
 						</SavedNotesProvider >
 					</LoginProvider>
 				</UserProvider>

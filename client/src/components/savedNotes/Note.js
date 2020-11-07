@@ -33,14 +33,14 @@ function Note({note,index, handleClick}){
 			category === "all" || categories.includes(category) ?
 				<Container>
 					<div onDoubleClick={()=>handleClick(index)}>
-					<Card>
-						<Card.Body onMouseEnter={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>
-							<Card.Title>{note.Title}</Card.Title>
-							<Card.Text style={textEllipses}>{note.Body}</Card.Text>
-							<Fade in={open}><div><CategoryButton noteId={note.id} index={index}/></div></Fade>
-						</Card.Body>
-					</Card>
-						</div>
+						<Card>
+							<Card.Body onMouseEnter={()=>setOpen(true)} onMouseLeave={()=>setOpen(false)}>
+								<Card.Title>{note.Title}</Card.Title>
+								<Card.Text style={textEllipses}>{note.Body}</Card.Text>
+								<Fade in={open}><div><CategoryButton noteId={note.id} index={index}/></div></Fade>
+							</Card.Body>
+						</Card>
+					</div>
 				</Container>
 			:
 				<></>

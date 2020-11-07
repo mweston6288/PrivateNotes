@@ -19,7 +19,6 @@ function NewNote(){
 	};
 	const handleBodyChange = (event)=>{
 		setState({type: "body",data:event.target.value});
-		console.log(state);
 	};
 	// Load component. Uses Bootstrap's Form Component
 
