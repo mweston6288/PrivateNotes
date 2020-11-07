@@ -22,6 +22,7 @@ function SaveButton(){
 				axios.put("api/notes",NewNote).then((response)=>{
 					console.log(response);
 				})
+				//TODO: implement note update
 				console.log("Note is updated")
 			}
 			axios.post("/api/new", NewNote).then((response)=>{
