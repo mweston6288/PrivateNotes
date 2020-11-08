@@ -7,14 +7,13 @@ const reducer = (state, action) => {
 	switch(action.type){
 	case "addNew":
 		action.newNote.Categories = [];
-		state.notes.push(action.newNote);
+		state.notes.unshift(action.newNote);
 		return ({...state});
 	case "add":
 		return({...state, notes: action.data});
 	case "sort":
 		if (action.sortBy === "reverseUpdatedAt"){
 			Sort(state.notes).desc("updatedAt");
-
 		}else
 			Sort(state.notes).asc(action.sortBy);
 		return({...state});
@@ -26,6 +25,13 @@ const reducer = (state, action) => {
 	case "updateCategory":
 		state.notes[action.index].Categories.push(action.category)
 		return ({...state})
+	case "updateNote":{
+		action.data.Categories = [];
+
+		state.notes.splice(action.index,1)
+		state.notes.unshift(action.data)
+		return ({ ...state })
+	}
 	default:
 		return ({...state});
 

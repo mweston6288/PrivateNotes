@@ -9,34 +9,36 @@ import {SavedNotesProvider} from "./utils/SavedNotesContext";
 import LoginWindow from "./components/Login/LoginWindow";
 import {UserProvider} from "./utils/UserContext";
 import {LoginProvider} from "./utils/LoginContext";
+import {NewNoteProvider} from "./utils/NewNoteContext";
 function App() {
 	return (
 		// Main page contains two columns. The left column will display saved notes.
 		// The right will let users make new notes
 		<>
-			<UserProvider>
-				<LoginProvider>
-					<SavedNotesProvider>
-						<Container>
-							<Row>
-								<Col sm={3}>
-									<Categories/>
-								</Col>
-								<Col sm={4}>
-									<div style={{overflowY:"scroll", height:"100vh"}}>
-										<SavedNotes/>
-									</div>
-								</Col>
-								<Col sm={5}>
-									<NewNote/>
-								</Col>
-							</Row>
-						</Container>
-						<LoginWindow />
-
-					</SavedNotesProvider >
-				</LoginProvider>
-			</UserProvider>
+			<NewNoteProvider>
+				<UserProvider>
+					<LoginProvider>
+						<SavedNotesProvider>
+							<Container>
+								<Row>
+									<Col sm={3}>
+										<Categories/>
+									</Col>
+									<Col sm={4}>
+										<div style={{overflowY:"scroll", height:"100vh"}}>
+											<SavedNotes/>
+										</div>
+									</Col>
+									<Col sm={5}>
+										<NewNote/>
+									</Col>
+								</Row>
+							</Container>
+							<LoginWindow />
+						</SavedNotesProvider >
+					</LoginProvider>
+				</UserProvider>
+			</NewNoteProvider>
 		</>
 	);
 }

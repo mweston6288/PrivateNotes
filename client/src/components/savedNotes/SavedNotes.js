@@ -8,21 +8,31 @@ import React from "react";
 import Note from "./Note.js";
 import {useSavedNotesContext} from "../../utils/SavedNotesContext";
 import SortButton from "./SortButton"
+import {useNewNoteContext} from "../../utils/NewNoteContext"
+import {useUserContext} from "../../utils/UserContext"
 
 function SavedNotes() {
 	const [{notes},] = useSavedNotesContext();
-
+	const [newNote, setNewNote] = useNewNoteContext();
+	const [user] = useUserContext();
+	const handleClick = (index)=>{
+		setNewNote({type:"update", data: notes[index], index:index})
+	}
 	return(
 		<>
-
-					<SortButton />
-					<div>
-						{/* For every note in Notes, create a Note object */}
-						{notes.map((note, index) => (
-							<Note key={note.id} note={note} index={index} />
-						))}
-					</div>
-
+		{ user.LoggedIn ?
+		<>
+			<SortButton />
+			<div>
+				{/* For every note in Notes, create a Note object */}
+				{notes.map((note, index) => (
+					<Note key={note.id} note={note} index={index} handleClick={handleClick}/>
+				))}
+			</div>
+			</>
+			:
+			<></>
+		}
 		</>
 	);
 }

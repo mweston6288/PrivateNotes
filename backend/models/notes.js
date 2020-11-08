@@ -10,8 +10,15 @@ module.exports = function (sequelize, DataTypes) {
 			type: DataTypes.INTEGER,
 			autoIncrement: true
 		},
-		Title: DataTypes.TEXT,
-		Body: DataTypes.TEXT,
+		Title: {
+			type:DataTypes.TEXT,
+			allowNull: false,
+			defaultValue:"(No subject)"
+		},
+		Body: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		},
 		Date: {
 			type: DataTypes.DATE,
 			defaultValue: DataTypes.NOW
