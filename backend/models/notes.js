@@ -12,6 +12,7 @@ module.exports = function (sequelize, DataTypes) {
 		},
 		Title: {
 			type:DataTypes.TEXT,
+			allowNull: false,
 			defaultValue:"(No subject)"
 		},
 		Body: {

@@ -19,16 +19,21 @@ function SaveButton(){
 		// to the user context
 		if (user.LoggedIn){
 			if(NewNote.noteId){
+				console.log("Test")
 				axios.put("api/notes",NewNote).then((response)=>{
 					setNewNote({ type: "reset" })
 					dispatch({type:"updateNote", data: response.data, index: NewNote.activeIndex})
+				}).catch((err)=>{
+					console.log(err);
 				})
-			} else
-				axios.post("/api/new", NewNote).then((response)=>{
+			}
+			else{
+				axios.post("/api/new", {UserId: user.UserID, Title: NewNote.Title, Body: NewNote.Body}).then((response)=>{
 					dispatch({type:"addNew", newNote: response.data});
 					setNewNote({ type: "reset" })
-
-			})
+					}).catch((err)=>{
+						console.log(err);
+			})}
 		} // If user is not logged in, display the login window instead
 		else{
 			setLogin({type: "show"});
