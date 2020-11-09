@@ -10,6 +10,7 @@ import LoginWindow from "./components/Login/LoginWindow";
 import {UserProvider} from "./utils/UserContext";
 import {LoginProvider} from "./utils/LoginContext";
 import {NewNoteProvider} from "./utils/NewNoteContext";
+import Header from "./components/Layout/Header"
 function App() {
 	return (
 		// Main page contains two columns. The left column will display saved notes.
@@ -19,13 +20,14 @@ function App() {
 				<UserProvider>
 					<LoginProvider>
 						<SavedNotesProvider>
+							<Header />
 							<Container>
 								<Row>
 									<Col sm={3}>
 										<Categories/>
 									</Col>
 									<Col sm={4}>
-										<div style={{overflowY:"scroll", height:"100vh"}}>
+										<div style={{overflowY:"scroll", height:"92vh"}}>
 											<SavedNotes/>
 										</div>
 									</Col>
@@ -34,6 +36,7 @@ function App() {
 									</Col>
 								</Row>
 							</Container>
+
 							<LoginWindow />
 						</SavedNotesProvider >
 					</LoginProvider>
