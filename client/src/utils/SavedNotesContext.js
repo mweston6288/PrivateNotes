@@ -32,6 +32,10 @@ const reducer = (state, action) => {
 		state.notes.unshift(action.data)
 		return ({ ...state })
 	}
+	case"reset":{
+		return ({ ...state, notes:[], category:"all" })
+
+	}
 	default:
 		return ({...state});
 

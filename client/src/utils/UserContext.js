@@ -14,6 +14,10 @@ const reducer = (state, action) => {
 		state.categories.push(action.data)
 		return ({ ...state});
 	}
+	case "logout":{
+			return ({ ...state, LoggedIn:false, Username:"",UserID:"", categories:[] });
+
+	}
 	default:
 		return ({ ...state });
 
