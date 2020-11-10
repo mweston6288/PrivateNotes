@@ -22,8 +22,6 @@ function LoginWindow(){
 	const [userContext, setUserContext] = useUserContext();
 	// eslint-disable-next-line no-unused-vars
 	const [SavedNotes, setSavedNotes] = useSavedNotesContext();
-	// track whether loginPage or signupPage should display
-	const [loginPage, setLoginPage] = useState(true);
 	// Methods that update input's state when user writes into the 
 	// username, password, or confirmPassword fields
 	const handleUsernameChange = (event)=>{
@@ -43,8 +41,7 @@ function LoginWindow(){
 
 	// switch the login window to the loginForm and reset input
 	const handleLoginPage = () => {
-		setLoginPage(true);
-		setLogin({ type: "reset" });
+		setLogin({type:"loginPage"});
 	};
 	const handleLogin = () =>{
 		// Request user information. Will proceed to .then() only if passport returns
@@ -70,8 +67,7 @@ function LoginWindow(){
 
 	// switch the login window to the signupForm and reset input
 	const handleSignupPage = () => {
-		setLoginPage(false);
-		setLogin({ type: "reset" });
+		setLogin({type: "signupPage"});
 	};
 	// Method that does several checks prior to
 	// making a POST request for a new user
@@ -111,7 +107,7 @@ function LoginWindow(){
 		<Modal show={login.show} onHide={handleClose} backdrop="static" keyboard={false}>
 			<Modal.Header closeButton>
 				{
-					loginPage ?
+					login.loginPage ?
 						<Modal.Title>You must log in to save or view notes</Modal.Title>
 						:
 						<Modal.Title>Create an account</Modal.Title>
@@ -119,7 +115,7 @@ function LoginWindow(){
 			</Modal.Header>
 			<Modal.Body>
 				{
-					loginPage ?
+					login.loginPage ?
 						<LoginForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} handleLogin={handleLogin}/>
 						:
 						<SignupForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} handleConfirmPasswordChange={handleConfirmPasswordChange} handleSignup={handleSignup}/>
@@ -127,7 +123,7 @@ function LoginWindow(){
 			</Modal.Body>
 			<Modal.Footer>
 				{
-					loginPage ?
+					login.loginPage ?
 						<a>Don't have an account? <a onClick={handleSignupPage} href={"#"}>Sign up</a></a>
 						:
 						<a>Already have an account? <a onClick={handleLoginPage} href={"#"}>Log in</a></a>

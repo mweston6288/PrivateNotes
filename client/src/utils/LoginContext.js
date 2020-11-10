@@ -24,8 +24,14 @@ const reducer = (state, action) => {
 		return ({ show: false, username: "", password: "", confirmPassword: "" });
 	}
 	case "show":{
-		return ({ show: true, username: "", password: "", confirmPassword: "" });
+		return ({ show: true, loginPage:true, username: "", password: "", confirmPassword: "" });
 
+	}
+	case "loginPage":{
+			return ({ ...state, loginPage: true, username: "", password: "", confirmPassword: ""})
+	}
+	case "signupPage": {
+			return ({ ...state, loginPage: false, username: "", password: "", confirmPassword: ""})
 	}
 	default:{
 		return({...state});
@@ -38,6 +44,7 @@ const reducer = (state, action) => {
 const LoginProvider = ({ value = [], ...props }) => {
 	const [state, dispatch] = useReducer(reducer, {
 		show: true,
+		loginPage:true,
 		username:"",
 		password:"",
 		confirmPassword:""
