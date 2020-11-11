@@ -7,6 +7,8 @@ import {useUserContext} from "../../utils/UserContext"
 import {useLoginContext} from "../../utils/LoginContext"
 import { useSavedNotesContext } from "../../utils/SavedNotesContext";
 import ResetPassword from "./resetPassword"
+import Dropdown from "react-bootstrap/Dropdown"
+import DropdownButton from "react-bootstrap/DropdownButton"
 function Header(){
 	const [login, setLogin] = useLoginContext();
 	const [user, setUser] = useUserContext();
@@ -45,24 +47,20 @@ function Header(){
 			<header style={backgroundStyle}>
 				<Container>
 					<Row>
-						<Col sm={6}/>
+						<Col sm={9}/>
 						<Col sm={3}>
 							{user.LoggedIn ?
-								<div style={usernameStyle}>{user.Username}</div>
-								:
-								<></>
-							}
-						</Col>
-						<Col sm={3}>
-							{user.LoggedIn ? 
-						<>
-						<Button variant="link" style={{ padding: ".6em" }} onClick={handleSignout}>Sign out</Button>
-								<Button variant="link" style={{ padding: ".6em" }} onClick={handleShowResetPassword}>Change Password</Button>
+								<>
+								<DropdownButton id="dropdown-basic-button" title={user.Username}>
+								<Dropdown.Item as="button" onClick={handleSignout}>Sign out</Dropdown.Item>
+								<Dropdown.Item as="button" onClick={handleShowResetPassword}>Change Password</Dropdown.Item>
+								</DropdownButton>
 								<ResetPassword show={showResetPassword} handleCloseResetPassword={handleCloseResetPassword}/>
-</>
-							:
-							<Button variant="link" style={{ padding: ".6em" }} onClick={handleLogin}>Log in</Button>
-						}
+								</>
+								:
+								<Button variant="link" style={usernameStyle} onClick={handleLogin}>Log in</Button>
+
+							}
 						</Col>
 					</Row>
 				</Container>
