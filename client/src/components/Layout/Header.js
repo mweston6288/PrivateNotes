@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,10 +6,12 @@ import Button from "react-bootstrap/Button"
 import {useUserContext} from "../../utils/UserContext"
 import {useLoginContext} from "../../utils/LoginContext"
 import { useSavedNotesContext } from "../../utils/SavedNotesContext";
+import ResetPassword from "./resetPassword"
 function Header(){
 	const [login, setLogin] = useLoginContext();
 	const [user, setUser] = useUserContext();
 	const [notes,setNotes] = useSavedNotesContext();
+	const [showResetPassword, setShowResetPassword] = useState(false);
 
 	const backgroundStyle = {
 		backgroundColor: "#FCFF7F",
@@ -31,6 +33,14 @@ function Header(){
 	const handleLogin = ()=>{
 		setLogin({type:"show"})
 	}
+
+	const handleShowResetPassword = ()=>{
+		setShowResetPassword(true);
+	}
+	const handleCloseResetPassword = ()=>{
+		setShowResetPassword(false);
+
+	}
 	return(
 			<header style={backgroundStyle}>
 				<Container>
@@ -45,7 +55,11 @@ function Header(){
 						</Col>
 						<Col sm={3}>
 							{user.LoggedIn ? 
-							<Button variant="link" style={{ padding: ".6em" }} onClick={handleSignout}>Sign out</Button>
+						<>
+						<Button variant="link" style={{ padding: ".6em" }} onClick={handleSignout}>Sign out</Button>
+								<Button variant="link" style={{ padding: ".6em" }} onClick={handleShowResetPassword}>Change Password</Button>
+								<ResetPassword show={showResetPassword} handleCloseResetPassword={handleCloseResetPassword}/>
+</>
 							:
 							<Button variant="link" style={{ padding: ".6em" }} onClick={handleLogin}>Log in</Button>
 						}

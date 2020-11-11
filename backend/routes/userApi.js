@@ -27,4 +27,15 @@ module.exports = function (app) {
 		const response = {userID: req.user.dataValues.id, username: req.user.dataValues.username}
 		res.json(response);
 	});
+	app.put("/api/user", passport.authenticate("local"), function(req,res){
+		db.Users.update({
+			password: req.body.newPassword
+		},{
+			where: {
+				id:req.body.userId
+			}
+		}).then((response)=>{
+			res.json(response);
+		})
+	})
 }
