@@ -20,7 +20,6 @@ function SavedNotes() {
 	
 	// If a Note is double-clicked, set newNote's values to that note
 	const handleClick = (index)=>{
-		console.log(notes[index])
 		setNewNote({type:"update", data: notes[index], index:index})
 	}
 	// This component is empty if user.loggedIn is false
