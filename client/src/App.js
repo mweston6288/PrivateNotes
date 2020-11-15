@@ -10,7 +10,7 @@ import LoginWindow from "./components/Login/LoginWindow";
 import {UserProvider} from "./utils/UserContext";
 import {LoginProvider} from "./utils/LoginContext";
 import {NewNoteProvider} from "./utils/NewNoteContext";
-import Header from "./components/Layout/Header"
+import Header from "./components/Header/Header"
 function App() {
 	return (
 		// Main page contains two columns. The left column will display saved notes.

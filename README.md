@@ -1,43 +1,41 @@
 # PrivateNotes
 Goal: This will be an app that lets users create, save,and organize notes.
 
+THis application uses React.js and Sequelize
+
 This is made as a class assignment.
 
-## Current Status
-User can make and save notes
-User can create an account and log in
-User can create categories
-User can sort notes
-User can set notes into categories
+## Capabilities
+Users can create an account that uses a username and password login.
+Users can create and save notes which are linked to their account.
+Users can edit any saved notes and save them.
+Users can create categories to save their notes into.
+Users can change their password.
 
 
-## Next steps
-Create logout option
-Create delete note option
-Create delete cateogry option
-Create note edit
+## Setup
+This application requires Node.js and MySQL to install and run locally. 
+For Node.js, you can go to [https://github.com/mweston6288/PrivateNotes.git]
+For MySQL, you can install MySQL Workbench: [https://www.mysql.com/products/workbench/]
+You will also need to create a databse in mySQL using the command 'CREATE DATABASE IF NOT EXISTS notes_DB'
 
-## TO-DO
-[] create note edit
-[] create logout
-[] create delete note
-[] create delete category
+After installing, open your terminal and use the command 'git clone https://github.com/mweston6288/PrivateNotes.git' to download a copy of the Private Notes source code.
+Finally 'cd PrivateNotes' to enter the directory, 'npm run setup' to install all dependencies and 'npm run start' to run the application.
+You can use the application by opening a web browser and going to 'localhost:8080'
+
+## Future additions
+Let users delete notes and categories
+Add security questions for account recovery
+Let users delete their account
 
 ## Components
-* Server.js: Manages communication between front and backend. Connects the API routes with the React build files
-* backend/models: Stores the database models. Uses Sequelize for construction and sanitation
-* backend/models/notes;js: Sequelize model for saved notes. Outlines fields and default fields. On activation, it creates a Notes table.
-* backend/routes: Files for API connections. Organized into files of related API calls
-* backend/routes/notesApi.js: Uses notes model file. Handles API calls realted to notes
-* client/public: React-created frontend code
-* client/src: all React elements made for the application
-* client/src/components: Contains the React elements that make web objects
-* client/src/components/newNotes: Components associated with the new notes section
-* client/src/components/newNotes/NewNote.js: An input field that user can use to write a note. Stores the note contents in a state. Contains a SaveButton component
-* client/src/components/newNotes/SaveButton.js: Produces a button component. Uses the SavedNotesContext. On click, makes a POST request to the Notes table and updates SavedNotesContext to require an update.
-* client/src/components/savedNotes: Components associated with displaying saved notes
-* client/src/components/savedNotes/Note.js: Receives a single Notes database object from savedNotes and displays the note
-* client/src/components/savedNotes/SavedNotes.js: Container to display all notes. Uses the SavedNotesContext and has 0 or more Note objects. If SavedNotesContext requires an update, SavedNotes makes a GET request from Notes table. Then creates a Note object for each element returned.
-* client/src/uitls: Contains React elements that store data used acroos multiple components
-* client/src/utils/SavedNotesContext.js: Used by SaveButton and SavedNotes. When SaveButton saves a note, SavedNoteContext updates so SavedNotes is aware it needs to make a new API call.
-* client/app.js: Primary React component. Has SavedNotesContext, NewNote, and SavedNotes components
+### Backend components
+Backend is divided into three folders: config, models, and routes
+* config: contains the config details needed to setup the database and authenticate users
+* models: contains the sequelize models for the various database tables
+* routes: the api routing paths, organized by table
+
+### Client components
+Front end compoenets made using React. Aside from /src, all files are the default files made using react init.
+* /src/components: contains the HTML creating components. All folders contain their main and sub components
+* /src/utils: contains non-html creating components. Each file stores an object that any component can access

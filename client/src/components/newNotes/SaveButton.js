@@ -10,31 +10,49 @@ import {useUserContext} from "../../utils/UserContext";
 import {useLoginContext} from "../../utils/LoginContext";
 import {useNewNoteContext} from "../../utils/NewNoteContext"
 function SaveButton(){
-	const [SavedNotes, dispatch] = useSavedNotesContext();
+	const [savedNotes, setSavedNotes] = useSavedNotesContext();
 	const [user] = useUserContext();
-	const [Login, setLogin] = useLoginContext();
-	const [NewNote,setNewNote] = useNewNoteContext();
+	const [login, setLogin] = useLoginContext();
+	const [newNote,setNewNote] = useNewNoteContext();
+
 	const handleClick = (event) => {
+		if(newNote.title === ""){
+			console.log("Title cannot be empty");
+			return;
+		}
 		// if user is logged in, add the new note to the database and then add the note
 		// to the user context
-		if (user.LoggedIn){
-			if(NewNote.noteId){
-				console.log("Test")
-				axios.put("api/notes",NewNote).then((response)=>{
+		// Otherwise, reveal the login window
+		if (user.loggedIn){
+			// if newNote.noteId is not empty, we're updating
+			// a note so we update with the note info
+			// then replace the old note with the new version
+			if(newNote.noteId){
+				axios.put("api/notes",newNote).then((response)=>{
 					setNewNote({ type: "reset" })
-					dispatch({type:"updateNote", data: response.data, index: NewNote.activeIndex})
+					setSavedNotes({type:"updateNote", 
+						data: response.data, 
+						index: newNote.activeIndex
+					})
 				}).catch((err)=>{
 					console.log(err);
 				})
 			}
+			// if there is no noteId, create a new note and
+			// add it to the user's note list
 			else{
-				axios.post("/api/new", {UserId: user.UserID, Title: NewNote.Title, Body: NewNote.Body}).then((response)=>{
-					dispatch({type:"addNew", newNote: response.data});
+				axios.post("/api/newNote", {
+					userId: user.userId, 
+					title: newNote.title, 
+					body: newNote.body
+				}).then((response)=>{
+					setSavedNotes({type:"addNew", newNote: response.data});
 					setNewNote({ type: "reset" })
-					}).catch((err)=>{
-						console.log(err);
+				}).catch((err)=>{
+					console.log(err);
 			})}
-		} // If user is not logged in, display the login window instead
+		}
+		// If user is not logged in, display the login window instead
 		else{
 			setLogin({type: "show"});
 		}

@@ -8,8 +8,7 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import SaveButton from "./SaveButton";
 import {useNewNoteContext} from "../../utils/NewNoteContext";
-//import { useUserContext } from "../../utils/UserContext";
-// Need to convert to function structure
+
 function NewNote(){
 	const [state, setState] =useNewNoteContext();
 	// On changing the value in either text box, these two methods handle updating
@@ -20,14 +19,14 @@ function NewNote(){
 	const handleBodyChange = (event)=>{
 		setState({type: "body",data:event.target.value});
 	};
+	
 	// Load component. Uses Bootstrap's Form Component
-
 	return (
 		<div>
 			<Form>
 				<Form.Group>
-					<Form.Control size="lg" type="text" placeholder="Title" maxLength= "20" onChange={handleTitleChange} value={state.Title}/>
-					<Form.Control as="textarea" rows="5" onChange={handleBodyChange} value={state.Body}/>
+					<Form.Control size="lg" type="text" placeholder="Title" maxLength= "20" onChange={handleTitleChange} value={state.title}/>
+					<Form.Control as="textarea" rows="5" onChange={handleBodyChange} value={state.body}/>
 				</Form.Group>
 			</Form >
 			<SaveButton/>

@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 module.exports = function (sequelize, DataTypes) {
 
 	const Users = sequelize.define("Users",{
-		id: {
+		userId: {
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 			autoIncrement: true
@@ -29,10 +29,13 @@ module.exports = function (sequelize, DataTypes) {
 		}
 	})
 	Users.associate = function (models) {
-		Users.hasMany(models.Notes);
-		Users.hasMany(models.Category);
+		// User is associated to moultiple notes and categories
+		Users.hasMany(models.Notes, {foreignKey: "userId"});
+		Users.hasMany(models.Categories,{foreignKey: "userId"});
 	};
-	// Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
+	// Creating a custom method for our User model. This will check if an
+	// unhashed password entered by the user can be compared to the hashed 
+	// password stored in our database
 	Users.prototype.validPassword = function (password) {
 		return bcrypt.compareSync(password, this.password);
 	};

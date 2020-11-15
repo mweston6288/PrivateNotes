@@ -13,26 +13,37 @@ module.exports = function (app) {
 			username: req.body.username,
 			password: req.body.password,
 		}).then(function (results) {
-			const response = {userID: results.dataValues.id, username: results.dataValues.username};
+			// return an object containing only the username and userId.
+			const response = {
+				userID: results.dataValues.userId, 
+				username: results.dataValues.username
+			};
 			res.json(response);
 			res.end();
 		}).catch(function(err){
 			res.json(err);
 		});
 	});
-	// Using the passport.authenticate middleware with our local strategy.
-	// If the user has valid login credentials, send them to the user page.
+	// Login using the passport.authenticate middleware with our local strategy.
+	// If the user has valid login credentials, send back the user details.
 	// Otherwise the user will be sent an error
 	app.post("/api/user", passport.authenticate("local"), function (req, res) {
-		const response = {userID: req.user.dataValues.id, username: req.user.dataValues.username}
+		// return only username and userId
+		const response = {
+			userId: req.user.dataValues.userId, 
+			username: req.user.dataValues.username
+		}
 		res.json(response);
 	});
+	// Update the user's password
+	// Authenticate with Passport prior to update
+	// If authentication fails, passport returns an error without update
 	app.put("/api/user", passport.authenticate("local"), function(req,res){
 		db.Users.update({
 			password: req.body.newPassword
 		},{
 			where: {
-				id:req.body.userId
+				userId:req.body.userId
 			}
 		}).then((response)=>{
 			res.json(response);
