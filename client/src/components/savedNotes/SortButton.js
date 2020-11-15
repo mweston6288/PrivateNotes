@@ -1,6 +1,6 @@
 /**
  * Drop-down button that lets user sort by date or title
- *  Does not filter out any notes
+ * sub-component to SavedNotes
  */
 
 import React from "react";
@@ -11,7 +11,7 @@ import { useSavedNotesContext } from "../../utils/SavedNotesContext";
 function SortButton() {
 	const [{ notes }, setNotes] = useSavedNotesContext();
 
-
+	// sort notes.notes based on the eventKey
 	const handleSortClick = (event) => {
 		setNotes({ type: "sort", sortBy: event })
 

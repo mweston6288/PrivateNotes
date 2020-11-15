@@ -2,25 +2,31 @@
  * Primary component for the saved Notes window
  * When needed, it makes a GET request for notes and then 
  * creates a Note component for each received note
+ * 
+ * This is the super-component to Note, and SortButton
  */
 
 import React from "react";
 import Note from "./Note.js";
-import {useSavedNotesContext} from "../../utils/SavedNotesContext";
 import SortButton from "./SortButton"
+import {useSavedNotesContext} from "../../utils/SavedNotesContext";
 import {useNewNoteContext} from "../../utils/NewNoteContext"
 import {useUserContext} from "../../utils/UserContext"
 
 function SavedNotes() {
-	const [{notes},] = useSavedNotesContext();
+	const [{notes}] = useSavedNotesContext();
 	const [newNote, setNewNote] = useNewNoteContext();
 	const [user] = useUserContext();
+	
+	// If a Note is double-clicked, set newNote's values to that note
 	const handleClick = (index)=>{
+		console.log(notes[index])
 		setNewNote({type:"update", data: notes[index], index:index})
 	}
+	// This component is empty if user.loggedIn is false
 	return(
 		<>
-		{ user.LoggedIn ?
+		{ user.loggedIn ?
 		<>
 			<SortButton />
 			<div>

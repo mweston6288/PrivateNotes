@@ -1,3 +1,7 @@
+/**
+ * API calls associated with notes_category
+ */
+
 const db = require("../models");
 
 module.exports = function (app) {

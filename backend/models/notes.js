@@ -1,37 +1,33 @@
 /**
  * Data model for saved notes. 
- * Notes contain an id, Title, Body, and owner
+ * Notes contain an id, title, and body; and is associated to a user
  */
 
 module.exports = function (sequelize, DataTypes) {
 	const Notes = sequelize.define("Notes",{
-		id: {
+		notesId: {
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 			autoIncrement: true
 		},
-		Title: {
+		title: {
 			type:DataTypes.TEXT,
 			allowNull: false,
 			defaultValue:"(No subject)"
 		},
-		Body: {
+		body: {
 			type: DataTypes.TEXT,
 			allowNull: false
-		},
-		Date: {
-			type: DataTypes.DATE,
-			defaultValue: DataTypes.NOW
 		}
 	});
 
 	Notes.associate = function (models) {
+		// Each note belongs to a single User
 		Notes.belongsTo(models.Users, {
-			foreignKey: {
-				allowNull: false
-			}
+			foreignKey: "userId"
 		}),
-		Notes.belongsToMany(models.Category,{
+		// Each note can be associated to 0 or more categories
+		Notes.belongsToMany(models.Categories,{
 			through: models.Notes_Category,
 			foreignKey: "notesId"
 		})

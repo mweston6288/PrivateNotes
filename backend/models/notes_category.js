@@ -1,6 +1,5 @@
 /**
  * Link table model for categories and notes. Each entry links a note to a category
- * The notesId and categoryId are the id element in Notes and Category
  */
 
 module.exports = function (sequelize, DataTypes) {
@@ -27,13 +26,15 @@ module.exports = function (sequelize, DataTypes) {
 	});
 
 	Notes_Category.associate = function (models) {
+		// Each entry is linked to a single noteId
 		Notes_Category.belongsTo(models.Notes, {
 			foreignKey: "notesId",
-			targetKey: "id",
+			targetKey: "notesId",
 		}),
-		Notes_Category.belongsTo(models.Category, {
+		// Each entry is linked to a single categoryId
+		Notes_Category.belongsTo(models.Categories, {
 			foreignKey: "categoryId",
-			targetKey: "id",
+			targetKey: "categoryId",
 		})
 
 	};

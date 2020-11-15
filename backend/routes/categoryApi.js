@@ -4,21 +4,21 @@
 const db = require("../models");
 
 module.exports = function (app) {
-	// Post a new category
+	// Create a new category
 	app.post("/api/newCategory", function (req, res) {
-		db.Category.create({
-			Title: req.body.Title,
-			UserId: req.body.UserId
+		db.Categories.create({
+			title: req.body.title,
+			userId: req.body.userId
 		}).then(function (results) {
 			res.json(results);
 			res.end();
 		});
 	});
 	// Get categories owned by a user
-	app.get("/api/categories/:Userid", function (req, res) {
-		db.Category.findAll({
+	app.get("/api/categories/:userId", function (req, res) {
+		db.Categories.findAll({
 			where: {
-				UserId: req.params.Userid
+				userId: req.params.userId
 			}
 		}).then(function (results) {
 			res.json(results);

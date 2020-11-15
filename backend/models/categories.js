@@ -5,27 +5,27 @@
  */
 
 module.exports = function (sequelize, DataTypes) {
-	const Category = sequelize.define("Category", {
-		id: {
+	const Categories = sequelize.define("Categories", {
+		categoryId: {
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 			autoIncrement: true
 		},
-		Title: DataTypes.TEXT
+		title: DataTypes.TEXT
 	});
 
-	Category.associate = function (models) {
-		Category.belongsTo(models.Users, {
-			foreignKey: {
-				allowNull: false
-			}
+	Categories.associate = function (models) {
+		// Many-to-one relation to Users
+		Categories.belongsTo(models.Users, {
+			foreignKey: "userId"
 		}),
-		Category.belongsToMany(models.Notes,{
+		// Many-to-many relation with Notes
+		Categories.belongsToMany(models.Notes,{
 			through: models.Notes_Category,
 			foreignKey: "categoryId"
 		})
 
 	};
-	return Category;
+	return Categories;
 
 }

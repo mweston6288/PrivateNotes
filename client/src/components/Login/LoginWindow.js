@@ -1,12 +1,12 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable react/no-unescaped-entities */
 /**
  * Primary component for user login. Contains the methods for both
  * the loginForm and SignupForm.
  * Sets the userContext on submit.
+ * 
+ * This is a supercomponenet to LoginForm and SignupForm
  */
+import React from "react";
 import axios from "axios";
-import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
@@ -17,11 +17,11 @@ function LoginWindow(){
 	// password must be 8-32 characters with at least 1
 	// capital and lowercase letter, a number, and special character
 	const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,32}$/;
-	// handles whether the login window should be visibile
+
 	const [login, setLogin] = useLoginContext();
 	const [userContext, setUserContext] = useUserContext();
-	// eslint-disable-next-line no-unused-vars
 	const [SavedNotes, setSavedNotes] = useSavedNotesContext();
+
 	// Methods that update input's state when user writes into the 
 	// username, password, or confirmPassword fields
 	const handleUsernameChange = (event)=>{
@@ -43,23 +43,26 @@ function LoginWindow(){
 	const handleLoginPage = () => {
 		setLogin({type:"loginPage"});
 	};
+	// Retrieve the user information using the given username and password info.
+	// This uses a POST request because GET requests would store the 
+	// password as a visible parameter
 	const handleLogin = () =>{
 		// Request user information. Will proceed to .then() only if passport returns
 		// a successful value
 		axios.post("/api/user", login).then((response) => {
-			// Update user Context
+			console.log(response)
+			// Update user Context and close window
 			setUserContext({ type: "login", data: response.data });
 			setLogin({ type: "close" });
 			// Get user notes
-			axios.get("api/notes/"+response.data.userID).then((response)=>{
+			axios.get("api/notes/"+response.data.userId).then((response)=>{
 				setSavedNotes({type:"add", data: response.data})
 			})
 			// get user note categories 
-			axios.get("api/categories/"+response.data.userID).then((response)=>{
+			axios.get("api/categories/"+response.data.userId).then((response)=>{
 				setUserContext({ type: "categories", data: response.data });
 			})
-			// If passport fails, return an error
-			// TODO: create an alert for failed login
+		// If passport fails, return an error
 		}).catch((err) => {
 			console.log(err);
 		});
@@ -116,9 +119,20 @@ function LoginWindow(){
 			<Modal.Body>
 				{
 					login.loginPage ?
-						<LoginForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} handleLogin={handleLogin}/>
+						<LoginForm 
+							handleClose={handleClose} 
+							handleUsernameChange={handleUsernameChange} 
+							handlePasswordChange={handlePasswordChange}
+							handleLogin={handleLogin}
+						/>
 						:
-						<SignupForm handleClose={handleClose} handleUsernameChange={handleUsernameChange} handlePasswordChange={handlePasswordChange} handleConfirmPasswordChange={handleConfirmPasswordChange} handleSignup={handleSignup}/>
+						<SignupForm 
+							handleClose={handleClose} 
+							handleUsernameChange={handleUsernameChange} 
+							handlePasswordChange={handlePasswordChange} 
+							handleConfirmPasswordChange={handleConfirmPasswordChange} 
+							handleSignup={handleSignup}
+						/>
 				}
 			</Modal.Body>
 			<Modal.Footer>
