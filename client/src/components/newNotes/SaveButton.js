@@ -2,8 +2,9 @@
  * Save button component to NewNote.
  * On click, POST to the note db and update the SavedNotesContext
  */
-import React from "react";
+import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert"
 import axios from "axios";
 import {useSavedNotesContext} from "../../utils/SavedNotesContext";
 import {useUserContext} from "../../utils/UserContext";
@@ -14,10 +15,20 @@ function SaveButton(){
 	const [user] = useUserContext();
 	const [login, setLogin] = useLoginContext();
 	const [newNote,setNewNote] = useNewNoteContext();
-
+	const [alert, setAlert] = useState({
+		show: false,
+		message: ""
+	})
+	const closeAlert = () => {
+		setAlert({ show: false, message: "" })
+	}
 	const handleClick = (event) => {
 		if(newNote.title === ""){
-			console.log("Title cannot be empty");
+			setTimeout(closeAlert, 5000);
+			setAlert({
+				show: true,
+				message: "Title cannot be empty"
+			})
 			return;
 		}
 		// if user is logged in, add the new note to the database and then add the note
@@ -58,7 +69,10 @@ function SaveButton(){
 		}
 	};
 	return(
-		<Button onClick={handleClick}>Save</Button>
+		<>
+			<Button onClick={handleClick}>Save</Button>
+			<Alert show={alert.show} variant="warning">{alert.message}</Alert>
+		</>
 	)
 }
 export default SaveButton;

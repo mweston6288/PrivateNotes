@@ -5,9 +5,10 @@
  * 
  * This is a supercomponenet to LoginForm and SignupForm
  */
-import React from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
+import Alert from "react-bootstrap/Alert"
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import {useUserContext} from "../../utils/UserContext";
@@ -21,6 +22,10 @@ function LoginWindow(){
 	const [login, setLogin] = useLoginContext();
 	const [userContext, setUserContext] = useUserContext();
 	const [SavedNotes, setSavedNotes] = useSavedNotesContext();
+	const [alert, setAlert] = useState({
+		show: false,
+		message: ""
+	})
 
 	// Methods that update input's state when user writes into the 
 	// username, password, or confirmPassword fields
@@ -50,7 +55,6 @@ function LoginWindow(){
 		// Request user information. Will proceed to .then() only if passport returns
 		// a successful value
 		axios.post("/api/user", login).then((response) => {
-			console.log(response)
 			// Update user Context and close window
 			setUserContext({ type: "login", data: response.data });
 			setLogin({ type: "close" });
@@ -64,7 +68,11 @@ function LoginWindow(){
 			})
 		// If passport fails, return an error
 		}).catch((err) => {
-			console.log(err);
+			setTimeout(closeAlert, 5000);
+			setAlert({
+				show: true,
+				message: "Incorrect Username or Password"
+			})
 		});
 	};
 
@@ -77,12 +85,20 @@ function LoginWindow(){
 	const handleSignup = () =>{
 		// check that password has all requirements
 		if(!login.password.match(regex)){
-			console.log("Does not match regex");
+			setTimeout(closeAlert, 5000);
+			setAlert({
+				show: true,
+				message: "Password must contain a capital, lowercase, number, and special character"
+			})
 			return;
 		}
 		// check that password and confirmPassword match
 		if(login.password !== login.confirmPassword){
-			console.log("Passwords do not match");
+			setTimeout(closeAlert, 5000);
+			setAlert({
+				show: true,
+				message: "Passwords do not match"
+			})
 			return;
 		}
 		// Make a POST request
@@ -96,12 +112,17 @@ function LoginWindow(){
 				setUserContext({type: "login", data: response.data});
 				setLogin({ type: "close" });
 			}else{
-				console.log("Username already taken");
+				setTimeout(closeAlert, 5000);
+				setAlert({
+					show: true,
+					message: "Username already taken"
+				})
 			}
-		}).catch((err)=>{
-			console.log(err);
-		});
+		}).catch((err)=>{});
 	};
+	const closeAlert = () => {
+		setAlert({ show: false, message: "" })
+	}
 	return (
 		// If loginPage is true, create the loginForm component
 		// and pass the login methods to it
@@ -143,6 +164,8 @@ function LoginWindow(){
 						<a>Already have an account? <a onClick={handleLoginPage} href={"#"}>Log in</a></a>
 				}
 			</Modal.Footer>
+			<Alert show={alert.show} variant="warning">{alert.message}</Alert>
+
 		</Modal>
 	);
 }

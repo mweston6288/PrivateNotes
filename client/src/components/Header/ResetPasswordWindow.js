@@ -11,6 +11,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert"
 import { useUserContext } from "../../utils/UserContext";
 
 function ResetPasswordWindow({show, handleCloseResetPassword}) {
@@ -25,6 +26,11 @@ function ResetPasswordWindow({show, handleCloseResetPassword}) {
 		newPassword:"",
 		confirmPassword:""
 	})
+	const [alert,setAlert]=useState({
+		show:false,
+		message:""
+	})
+
 	// Methods that update input's state when user writes into the 
 	// password, newPassword, or confirmPassword fields
 	const handlePasswordChange = (event) => {
@@ -47,16 +53,27 @@ function ResetPasswordWindow({show, handleCloseResetPassword}) {
 		handleCloseResetPassword()
 
 	};
+	const closeAlert = () => {
+		setAlert({show:false, message:""})
+	}
 	// update the user password in db
 	const handleUpdate = () => {
 		// check that newPassword has all requirements
 		if (!input.newPassword.match(regex)) {
-			console.log("Does not match regex");
+			setTimeout(closeAlert, 5000);
+			setAlert({
+				show:true,
+				message: "Password must contain a capital, lowercase, number, and special character"
+			})
 			return;
 		}
 		// check that newPassword and confirmPassword match
 		if (input.newPassword !== input.confirmPassword) {
-			console.log("Passwords do not match");
+			setTimeout(closeAlert, 5000);
+			setAlert({
+				show: true,
+				message: "Passwords do not match"
+			})
 			return;
 		}
 		// Make a PUT request
@@ -70,11 +87,13 @@ function ResetPasswordWindow({show, handleCloseResetPassword}) {
 		}).then((response) => {
 			if (!response.data.errors) {
 				handleClose();
-			} else {
-				console.log("Incorrect Password");
 			}
 		}).catch((err) => {
-			console.log(err);
+			setTimeout(closeAlert, 5000);
+			setAlert({
+				show: true,
+				message: "Incorrect Password"
+			})
 		});
 	};
 	return (
@@ -107,6 +126,7 @@ function ResetPasswordWindow({show, handleCloseResetPassword}) {
 					
 					</Form.Group>
 				</Form>
+				<Alert show={alert.show}variant="warning">{alert.message}</Alert>
 			</Modal.Body>
 		</Modal>
 	);
