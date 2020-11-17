@@ -55,4 +55,14 @@ module.exports = function (app) {
 				res.json(err);
 			});
 	});
+	// DELETE route for deleting posts
+	app.delete("/api/notes/:notesId", function (req, res) {
+		db.Notes.destroy({
+			where: {
+				notesId: req.params.notesId
+			}
+		}).then(function (response) {
+			res.json(response);
+		});
+	});
 };

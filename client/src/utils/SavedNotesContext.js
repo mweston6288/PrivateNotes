@@ -48,6 +48,11 @@ const reducer = (state, action) => {
 		state.notes.unshift(action.data)
 		return ({ ...state })
 	}
+	// Delete a note from the array
+	case "delete":{
+		state.notes.splice(action.index, 1)
+		return ({ ...state })
+	}
 	// reset context. Used when user logs out
 	case"reset":{
 		return ({ ...state, notes:[], category:"all" })

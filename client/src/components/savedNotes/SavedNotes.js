@@ -7,6 +7,7 @@
  */
 
 import React from "react";
+import axios from "axios";
 import Note from "./Note.js";
 import SortButton from "./SortButton"
 import {useSavedNotesContext} from "../../utils/SavedNotesContext";
@@ -14,13 +15,20 @@ import {useNewNoteContext} from "../../utils/NewNoteContext"
 import {useUserContext} from "../../utils/UserContext"
 
 function SavedNotes() {
-	const [{notes}] = useSavedNotesContext();
+	const [{notes}, setNotes] = useSavedNotesContext();
 	const [newNote, setNewNote] = useNewNoteContext();
 	const [user] = useUserContext();
 	
 	// If a Note is double-clicked, set newNote's values to that note
 	const handleClick = (index)=>{
 		setNewNote({type:"update", data: notes[index], index:index})
+	}
+	const handleDelete = (notesId, index) => {
+		console.log("here")
+		axios.delete("/api/notes/" + notesId).then((response) => {
+			console.log(response);
+			setNotes({type:"delete",index:index})
+		})
 	}
 	// This component is empty if user.loggedIn is false
 	return(
@@ -31,7 +39,13 @@ function SavedNotes() {
 			<div>
 				{/* For every note in Notes, create a Note object */}
 				{notes.map((note, index) => (
-					<Note key={note.id} note={note} index={index} handleClick={handleClick}/>
+					<Note 
+						key={note.id} 
+						note={note} 
+						index={index} 
+						handleClick={handleClick} 
+						handleDelete={handleDelete}
+					/>
 				))}
 			</div>
 			</>

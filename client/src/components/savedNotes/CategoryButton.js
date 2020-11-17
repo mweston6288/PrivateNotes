@@ -26,7 +26,7 @@ function CategoryButton({noteId, index}) {
 				categories.map(category=>(
 					<Dropdown.Item as="button" 
 						eventKey={category.categoryId} 
-						onSelect={(e)=>handleSelect(category)}
+						onSelect={()=>handleSelect(category)}
 					>
 						{category.title}
 					</Dropdown.Item>

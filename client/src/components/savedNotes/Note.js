@@ -7,10 +7,11 @@ import React, {useState} from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Fade from "react-bootstrap/Fade"
+import Button from "react-bootstrap/Button"
 import CategoryButton from "./CategoryButton"
 import { useSavedNotesContext } from "../../utils/SavedNotesContext";
 
-function Note({note,index, handleClick}){
+function Note({note,index, handleClick, handleDelete}){
 	const [{ category }] = useSavedNotesContext();
 	// track if the CategoryButton should be visible
 	const [open, setOpen] = useState(false)
@@ -42,7 +43,10 @@ function Note({note,index, handleClick}){
 								<Card.Text style={textEllipses}>{note.body}</Card.Text>
 								<Fade in={open}>
 									<div>
-										<CategoryButton noteId={note.notesId} index={index}/>
+										<div style={{float:"left"}}>
+											<CategoryButton noteId={note.notesId} index={index}/>
+										</div>
+										<Button onClick={()=>handleDelete(note.notesId, index)}>Delete</Button>
 									</div>
 								</Fade>
 							</Card.Body>
