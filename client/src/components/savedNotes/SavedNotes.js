@@ -24,9 +24,7 @@ function SavedNotes() {
 		setNewNote({type:"update", data: notes[index], index:index})
 	}
 	const handleDelete = (notesId, index) => {
-		console.log("here")
 		axios.delete("/api/notes/" + notesId).then((response) => {
-			console.log(response);
 			setNotes({type:"delete",index:index})
 		})
 	}
