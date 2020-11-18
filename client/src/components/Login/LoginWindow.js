@@ -60,6 +60,7 @@ function LoginWindow(){
 			setLogin({ type: "close" });
 			// Get user notes
 			axios.get("api/notes/"+response.data.userId).then((response)=>{
+				console.log(response)
 				setSavedNotes({type:"add", data: response.data})
 			})
 			// get user note categories 
@@ -108,6 +109,7 @@ function LoginWindow(){
 		// Signup does not make calls to get notes or categories 
 		// because reasonably, new users do not have any
 		axios.post("/api/newUser", login).then((response)=>{
+			console.log(response)
 			if(!response.data.errors){
 				setUserContext({type: "login", data: response.data});
 				setLogin({ type: "close" });

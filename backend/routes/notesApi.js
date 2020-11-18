@@ -6,6 +6,7 @@ const db = require("../models");
 module.exports = function (app) {
 	// Create a new note
 	app.post("/api/newNote", function (req, res) {
+		console.log(req.body)
 		db.Notes.create({
 			title: req.body.title,
 			body: req.body.body,

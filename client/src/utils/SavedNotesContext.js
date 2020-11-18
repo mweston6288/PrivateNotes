@@ -42,8 +42,9 @@ const reducer = (state, action) => {
 	// remove a note and replace it with an updated version
 	// used when user updates a note
 	case "updateNote":{
-		action.data.Categories = [];
-
+		// Copy the categories from the old note into the new version
+		action.data.Categories = state.notes[action.index].Categories.slice(0);
+		// remove old version. add new one
 		state.notes.splice(action.index,1)
 		state.notes.unshift(action.data)
 		return ({ ...state })

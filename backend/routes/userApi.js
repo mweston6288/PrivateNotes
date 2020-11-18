@@ -15,7 +15,7 @@ module.exports = function (app) {
 		}).then(function (results) {
 			// return an object containing only the username and userId.
 			const response = {
-				userID: results.dataValues.userId, 
+				userId: results.dataValues.userId, 
 				username: results.dataValues.username
 			};
 			res.json(response);
