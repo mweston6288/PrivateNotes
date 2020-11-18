@@ -24,7 +24,9 @@ function App() {
 							<Container>
 								<Row>
 									<Col sm={3}>
-										<Categories/>
+										<div style={{ overflowY: "scroll", height: "92vh" }}>
+											<Categories/>
+										</div>
 									</Col>
 									<Col sm={4}>
 										<div style={{overflowY:"scroll", height:"92vh"}}>

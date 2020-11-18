@@ -15,10 +15,6 @@ const { Provider } = LoginContext;
 
 const reducer = (state, action) => {
 	switch (action.type){
-	// reset text fields without additional modifications
-	case "reset":{
-		return({...state,username: "", password:"", confirmPassword:""});
-	}
 	// update username text value
 	case "username":{
 		return ({ ...state, username: action.username });
