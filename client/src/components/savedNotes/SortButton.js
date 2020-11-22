@@ -18,7 +18,7 @@ function SortButton() {
 	}
 	return (
 		<DropdownButton title="Sort by">
-			<Dropdown.Item as="button" eventKey="Title" onSelect={handleSortClick}>Title</Dropdown.Item>
+			<Dropdown.Item as="button" eventKey="title" onSelect={handleSortClick}>Title</Dropdown.Item>
 			<Dropdown.Item as="button" eventKey="reverseUpdatedAt" onSelect={handleSortClick}>Newest First</Dropdown.Item>
 			<Dropdown.Item as="button" eventKey="updatedAt" onSelect={handleSortClick}>Oldest First</Dropdown.Item>
 		</DropdownButton>
